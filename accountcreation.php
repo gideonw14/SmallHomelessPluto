@@ -20,7 +20,7 @@ $response = @mysqli_query($connect, $createUser);
 $response = @mysqli_query($connect, $granUser);
 
 //add the user to the user table inside solar database.
-$adduser = "INSERT INTO users VALUE('" . $cUser . "', '" . $cPass . "', 'basic')";
+$adduser = "INSERT INTO users VALUE('" . $cUser . "', '" . $cPass . "', 'Basic')";
 
 $response = @mysqli_query($connect, $adduser);
 

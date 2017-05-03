@@ -24,8 +24,6 @@ if ($response) { //if query was succesful
 	$_SESSION["accesslevel"] = $AL['accesslevel'];
 }
 
-?>
+header("refresh:0;MainPage.php");
 
-<p>Hello, <?php echo DB_USER; ?>, you have sucessfully logged in!</p>
-<p>&nbsp;</p>
-<form action="MainPage.php"><input type="submit" value="Continue" /></form>
+?>

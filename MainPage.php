@@ -1,23 +1,32 @@
-<p><strong>Welcome to The Small Homeless Pluto Database!</strong></p>
-<table style="height: 71px;" width="793">
-<tbody>
+<html>
 
 <?php 
 	session_start();
-	
 	require_once('sqlconnect.php');
-
-	echo "Your access level is: " . $_SESSION["accesslevel"] . ".";
-	
 ?>
- 
+
+<table width="1000">
+<tbody>
 <tr>
-  <td><form action="Planets.php" method="post">
-		<input type = "submit" value = "Planets & Moons" />
-	  </form>
-  </td>
-  <td><input type = "submit" value = "Asteroids & Meteors" /> </td>
-  <td><input type = "submit" value = "Stars" /></td>
+<td><b><span style="font-size:large;"> Solar System Database</span></b></td>
+<td align="right">
+
+<?php
+	echo "You are logged in as " . $_SESSION['user'] . 
+		"<td align=\"center\"><form action=\"logout.php\"><input type=\"submit\" value=\"Log Out\" /></form></td>";
+?>
+
+
+</td>
+</tr>
+<tr>
+<td width="20%">
+<p>&nbsp;Planets &amp; Moons</p>
+<p>Asteroids &amp; Meteors</p>
+<p>Stars</p>
+</td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
+</html>
