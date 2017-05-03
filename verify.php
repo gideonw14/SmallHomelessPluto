@@ -11,11 +11,11 @@ $_SESSION["user"] = DB_USER;
 $_SESSION["pass"] = DB_PASSWORD;
 //establish database connection
 $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
-OR die('Could not connect to MySQL, redirecting you back to login page.'. header( "refresh:4;url=index.php" ));
+OR session_abort() . die('Could not connect to MySQL, redirecting you back to login page.'. header( "refresh:4;url=index.php" ));
 
 //activate a query to get the access level of the user.
 $query = "SELECT DISTINCT accesslevel FROM users u " .
-			"WHERE u.username = \"" . DB_USER . "\" AND u.password = \"" . DB_PASSWORD ."\"";
+			"WHERE u.username = \"" . DB_USER . "\" AND u.password = \"" . DB_PASSWORD . "\"";
 			
 $response = @mysqli_query($dbc, $query);
 
