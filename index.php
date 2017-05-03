@@ -18,7 +18,7 @@
 <td colspan="2" align="center"><input type="submit" value="Submit" /></td>
 </tr>
  <tr>
-   <td colspan="2">Don't have an account? <a href="createaccount.php">crete one here.</a> </td>
+   <td colspan="2">Don't have an account? <a href="createaccount.php">create one here.</a> </td>
 </tr>
 </tbody>
 </table>
