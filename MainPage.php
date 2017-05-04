@@ -13,50 +13,37 @@
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap-grid.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap-reboot.min.css">
 	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+
+	<!-- Our JS -->
+	<script type="text/javascript" src="./js/main.js"></script>
 </head>
 <body>
 	<?php 
 		session_start();
 		require_once('sqlconnect.php');
 	?>
-
-	<table width="1000" border="1">
-	<tbody>
-	<tr>
-	<td><b><span style="font-size:large;"> Solar System Database</span></b></td>
-	<td align="right">
+	<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+	  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <a class="navbar-brand">Small Homeless Pluto</a>
+	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	    <div class="navbar-nav">
+	      <a class="nav-item nav-link" onclick="logout()">Logout</a>
+	      <a class="nav-item nav-link" href="">Page</a>
+	      <a class="nav-item nav-link" href="">Other Page</a>
+	      <a class="nav-item nav-link" href="">Moar Page</a>
+	    </div>
+	  </div>
+	</nav>
 
 	<?php
-		echo "You are logged in as " . $_SESSION['user'] . " and you have " . $_SESSION['accesslevel']
-				. " level access.";
+		echo "<div>You are logged in as " . $_SESSION['user'] . "
+			 and you have " . $_SESSION['accesslevel'] . " level access. </div>";
 				
 	?>
-	<td align="center"><form action="logout.php"><input type="submit" class="btn btn-primary" value="Log Out" /></form></td>
-
-	</td>
-	</tr>
-	<tr>
-	<td colspan="4">
 	
-	Select Star:
-	
-	<?php
-	$query = "SELECT SName FROM star";
-	$response = @mysqli_query($dbc, $query);
-	echo "<select name=\"StarSelect\">";
-	while ($row = mysqli_fetch_array($response)) {
-		echo '<option value="' . $row['SName'] . '">' . $row['SName'] . '</option>';
-	}
-	?>
-	
-	<input type="submit" value="Submit" />
-	
-	</td>
-	</tr>
-	</tbody>
-	</table>
-
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
 			<div class="col">
 				<p>Select a star</p>
