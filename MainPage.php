@@ -36,14 +36,15 @@
 	    </div>
 	  </div>
 	</nav>
-
-	<?php
-		echo "<div>You are logged in as " . $_SESSION['user'] . "
-			 and you have " . $_SESSION['accesslevel'] . " level access. </div>";
-				
-	?>
-	
 	<div class="container">
+		<div class="row">
+			<h3>
+			<?php
+				echo "You are logged in as " . $_SESSION['user'] . "
+					 and you have " . $_SESSION['accesslevel'] . " level access. ";
+			?>
+			</h3>
+		</div>
 		<div class="row">
 			<div class="col">
 				<p>Select a star</p>
