@@ -5,7 +5,7 @@
 	require_once('sqlconnect.php');
 ?>
 
-<table width="1000" border="1">
+<table width="900" border="1">
 <tbody>
 <tr>
 <td><b><span style="font-size:large;"> Solar System Database</span></b></td>
@@ -22,12 +22,21 @@
 </td>
 </tr>
 <tr>
-<td width="20%">
-<p>&nbsp;Planets &amp; Moons</p>
-<p>Asteroids &amp; Meteors</p>
-<p>Stars</p>
+
+<td colspan="4">
+&nbsp;
+Star:
+<?php
+	$query = "SELECT SName FROM star";
+	$response = @mysqli_query($dbc, $query);
+	echo "<select name=\"StarSelect\">";
+	while ($row = mysqli_fetch_array($response)) {
+		echo '<option value="' . $row['SName'] . '">' . $row['SName'] . '</option>';
+	}
+	
+?>
+
 </td>
-<td colspan="4">&nbsp;</td>
 </tr>
 </tbody>
 </table>
