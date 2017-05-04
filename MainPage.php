@@ -73,9 +73,17 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col">
-				<p>Select a star</p>
+				Select a star
 				<form id="star_form" class="form-group">
-					<select name="star_select" class="form-control">
+					<?php 
+						$query = "SELECT SName FROM star";
+						$response = @mysqli_query($dbc, $query);
+						echo "<select name=\"star_select\" class=\"form-control\">";
+						while ($row = mysqli_fetch_array($response)) {
+							echo '<option value="' . $row['SName'] . '">' . $row['SName'] . '</option>';
+						}
+					?>
+					
 					</select>
 					<input type="submit" class="btn btn-warning" value="Star">
 				</form>
@@ -86,14 +94,39 @@
 			<div class="col">
 				Select a planet
 				<form id="planet_form" class="form-group">
-					<select name="planet_select" class="form-control">
-					</select>
+					<?php 
+						$query = "SELECT PName FROM planet";
+						$response = @mysqli_query($dbc, $query);
+						echo "<select name=\"planet_select\" class=\"form-control\">";
+						while ($row = mysqli_fetch_array($response)) {
+							echo '<option value="' . $row['PName'] . '">' . $row['PName'] . '</option>';
+						}
+					?>
 					<input type="submit" class="btn btn-success" value="Planet">
 				</form>
 			</div> 
 			<div class="col">
 				Select a planet to see data
 			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				Select a moon
+				<form id="star_form" class="form-group">
+					<?php 
+						$query = "SELECT MName FROM moon";
+						$response = @mysqli_query($dbc, $query);
+						echo "<select name=\"moon_select\" class=\"form-control\">";
+						while ($row = mysqli_fetch_array($response)) {
+							echo '<option value="' . $row['MName'] . '">' . $row['MName'] . '</option>';
+						}
+					?>
+					
+					</select>
+					<input type="submit" class="btn btn-warning" value="Star">
+				</form>
+			</div>
+			<div class="col">Select a moon to see data</div>
 		</div>
 	</div>
 </body>
