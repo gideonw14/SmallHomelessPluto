@@ -59,5 +59,16 @@
 						}
 		?><br />
 	</div>
+	<form class="form-group" onsubmit="return false;">
+		<label for="name">Name</label>
+		<input type="text" name="name" class="form-control">
+		<label for="mass">Mass</label>
+		<input type="number" name="mass" step="any" class="form-control">
+		<label for="diameter">Diameter</label>
+		<input type="number" name="diameter" class="form-control">
+		<label for="date_discovered">Date Discovered</label>
+		<input type="date" name="date_discovered" class="form-control">
+		<input type="submit" class="btn btn-default" value="Create">
+	</form>
 </body>
 </html>
