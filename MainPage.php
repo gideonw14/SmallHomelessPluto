@@ -30,9 +30,9 @@
 	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 	    <div class="navbar-nav">
 	      <a class="nav-item nav-link" href="logout.php">Logout</a>
-	      <a class="nav-item nav-link" href="">Page</a>
-	      <a class="nav-item nav-link" href="">Other Page</a>
-	      <a class="nav-item nav-link" href="">Moar Page</a>
+	      <a class="nav-item nav-link" href="create.php">Create</a>
+	      <a class="nav-item nav-link" href="update.php">Update</a>
+	      <a class="nav-item nav-link" href="delete.php">Delete</a>
 	    </div>
 	  </div>
 	</nav>
