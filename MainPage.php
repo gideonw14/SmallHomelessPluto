@@ -29,7 +29,7 @@
 	  <a class="navbar-brand">Small Homeless Pluto</a>
 	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 	    <div class="navbar-nav">
-	      <a class="nav-item nav-link" onclick="logout()">Logout</a>
+	      <a class="nav-item nav-link" href="logout.php">Logout</a>
 	      <a class="nav-item nav-link" href="">Page</a>
 	      <a class="nav-item nav-link" href="">Other Page</a>
 	      <a class="nav-item nav-link" href="">Moar Page</a>
@@ -107,6 +107,15 @@
 			<div class="col">
 				Select an Asteroid
 				<form id="asteroid_form" class="form-group">
+					<?php 
+						$query = "SELECT AName FROM asteroid";
+						$response = @mysqli_query($dbc, $query);
+						echo "<select name=\"asteroid_select\" class=\"form-control\">";
+						while ($row = mysqli_fetch_array($response)) {
+							echo '<option value="' . $row['AName'] . '">' . $row['AName'] . '</option>';
+						}
+					?>
+					</select>
 					<input type="submit" class="btn btn-info" value="Asteroid">
 				</form>
 			</div>
@@ -115,7 +124,16 @@
 		<div class="row">
 			<div class="col">
 				Select a Meteor
-				<form id="meteor_form" class="form-group">
+				<form id="meteor_form" class="form-group">	
+					<?php 
+						$query = "SELECT MeteorName FROM meteor";
+						$response = @mysqli_query($dbc, $query);
+						echo "<select name=\"meteor_select\" class=\"form-control\">";
+						while ($row = mysqli_fetch_array($response)) {
+							echo '<option value="' . $row['MeteorName'] . '">' . $row['MeteorName'] . '</option>';
+						}
+					?>
+					</select>
 					<input type="submit" class="btn btn-danger" value="Meteor">
 				</form>
 			</div>
