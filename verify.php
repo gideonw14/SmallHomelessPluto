@@ -24,6 +24,11 @@ if ($response) { //if query was succesful
 	$_SESSION["accesslevel"] = $AL['accesslevel'];
 }
 
-header("refresh:0;MainPage.php");
+$_SESSION["star_select"] = "";
+$_SESSION["planet_select"] = "";
+$_SESSION["moon_select"] = "";
+$_SESSION["asteroid_select"] = "";
+$_SESSION["meteor_select"] = "";
 
+header("refresh:0;MainPage.php");
 ?>
