@@ -106,6 +106,16 @@
 		<div class="row">
 			<div class="col">
 				Select an Asteroid
+				
+				<?php 
+					$query = "SELECT AName FROM asteroid";
+					$response = @mysqli_query($dbc, $query);
+					echo "<select name=\"asteroid_select\" class=\"form-control\">";
+					while ($row = mysqli_fetch_array($response)) {
+						echo '<option value="' . $row['AName'] . '">' . $row['AName'] . '</option>';
+					}
+				?>
+				
 				<form class="form-group">
 					<input type="submit" class="btn btn-primary" value="Asteroid">
 				</form>
@@ -115,6 +125,16 @@
 		<div class="row">
 			<div class="col">
 				Select a Meteor
+				
+				<?php 
+					$query = "SELECT MeteorName FROM meteor";
+					$response = @mysqli_query($dbc, $query);
+					echo "<select name=\"meteor_select\" class=\"form-control\">";
+					while ($row = mysqli_fetch_array($response)) {
+						echo '<option value="' . $row['MeteorName'] . '">' . $row['MeteorName'] . '</option>';
+					}
+				?>
+				
 				<form class="form-group">
 					<input type="submit" class="btn btn-primary" value="Meteor">
 				</form>
