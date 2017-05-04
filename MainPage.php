@@ -49,7 +49,7 @@
 		<div class="row">
 			<div class="col">
 				Select a star
-				<form id="star_form" class="form-group">
+				<form id="star_form" class="form-group" onsubmit="return false;">
 					<?php 
 						$query = "SELECT SName FROM star";
 						$response = @mysqli_query($dbc, $query);
@@ -68,7 +68,7 @@
 		<div class="row">
 			<div class="col">
 				Select a planet
-				<form id="planet_form" class="form-group">
+				<form id="planet_form" class="form-group" onsubmit="return false;">
 					<?php 
 						$query = "SELECT PName FROM planet";
 						$response = @mysqli_query($dbc, $query);
@@ -88,7 +88,7 @@
 		<div class="row">
 			<div class="col">
 				Select a moon
-				<form id="moon_form" class="form-group">
+				<form id="moon_form" class="form-group" onsubmit="return false;">
 					<?php 
 						$query = "SELECT MName FROM moon";
 						$response = @mysqli_query($dbc, $query);
@@ -107,7 +107,7 @@
 		<div class="row">
 			<div class="col">
 				Select an Asteroid
-				<form id="asteroid_form" class="form-group">
+				<form id="asteroid_form" class="form-group" onsubmit="return false;">
 					<?php 
 						$query = "SELECT AName FROM asteroid";
 						$response = @mysqli_query($dbc, $query);
@@ -125,7 +125,7 @@
 		<div class="row">
 			<div class="col">
 				Select a Meteor
-				<form id="meteor_form" class="form-group">	
+				<form id="meteor_form" class="form-group" onsubmit="return false;">	
 					<?php 
 						$query = "SELECT MeteorName FROM meteor";
 						$response = @mysqli_query($dbc, $query);
