@@ -77,6 +77,7 @@
 							echo '<option value="' . $row['PName'] . '">' . $row['PName'] . '</option>';
 						}
 					?>
+					</select>
 					<input type="submit" class="btn btn-success" value="Planet">
 				</form>
 			</div> 
@@ -134,7 +135,7 @@
 						echo '<option value="' . $row['MeteorName'] . '">' . $row['MeteorName'] . '</option>';
 					}
 				?>
-				
+				</select>
 				<form class="form-group">
 					<input type="submit" class="btn btn-primary" value="Meteor">
 				</form>
