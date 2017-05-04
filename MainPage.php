@@ -36,12 +36,10 @@
 	</td>
 	</tr>
 	<tr>
-	<td width="20%">
-	<p>&nbsp;Planets &amp; Moons</p>
-	<p>Asteroids &amp; Meteors</p>
-	<p>Stars</p>
-	</td>
 	<td colspan="4">
+	
+	Select Star:
+	
 	<?php
 	$query = "SELECT SName FROM star";
 	$response = @mysqli_query($dbc, $query);
@@ -50,23 +48,13 @@
 		echo '<option value="' . $row['SName'] . '">' . $row['SName'] . '</option>';
 	}
 	?>
+	
+	<input type="submit" value="Submit" />
+	
 	</td>
 	</tr>
 	</tbody>
 	</table>
 
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col">
-				<p>Select a star</p>
-				<form class="form-group">
-					<select class="form-control">
-					</select>
-					<input type="submit" class="btn btn-primary" value="Star">
-				</form>
-			</div>
-			<div class="col">hi</div>
-		</div>
-	</div>
 </body>
 </html>
