@@ -38,6 +38,7 @@
 	<tr>
 	<td colspan="4">
 	
+	<!------------------- STAR SELECTION ---------------------->
 	Select Star:
 	
 	<?php
@@ -48,8 +49,21 @@
 		echo '<option value="' . $row['SName'] . '">' . $row['SName'] . '</option>';
 	}
 	?>
-	
 	<input type="submit" value="Submit" />
+	
+	<!------------------- PLANET SELECTION ---------------------->
+	<p></p>
+	Select Planet: 
+	
+	<?php
+	$query = "SELECT PName FROM planet";
+	$response = @mysqli_query($dbc, $query);
+	echo "<select name=\"PlanetSelect\">";
+	while ($row = mysqli_fetch_array($response)) {
+		echo '<option value="' . $row['PName'] . '">' . $row['PName'] . '</option>';
+	}
+	?>
+	<inpu
 	
 	</td>
 	</tr>
