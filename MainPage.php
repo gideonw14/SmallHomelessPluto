@@ -16,10 +16,6 @@
 	echo "You are logged in as " . $_SESSION['user'] . " and you have " . $_SESSION['accesslevel']
 			. " level access.";
 			
-	if ($_SESSION['accesslevel'] == "Admin") {
-		echo "<td align=\"center\"><form action=\"GrantAccess\"><input type=\"submit\" value=\"Grant Access\" />" .
-				"</form></td>";
-	}
 ?>
 <td align="center"><form action="logout.php"><input type="submit" value="Log Out" /></form></td>
 
