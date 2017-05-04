@@ -12,7 +12,7 @@
 </tr>
 <tr>
 <td>Password</td>
-<td align="center"><input type="password" id="password" name="password" size="30" type="text" /></td>
+<td align="center"><input type="password" id="password" name="password" size="30" /></td>
 </tr>
 <tr>
 <td colspan="2" align="center"><input type="submit" value="Submit" /></td>
