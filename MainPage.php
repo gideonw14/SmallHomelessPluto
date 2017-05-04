@@ -99,7 +99,7 @@
 					?>
 					
 					</select>
-					<input type="submit" class="btn btn-warning" value="Moon">
+					<input type="submit" class="btn btn-primary" value="Moon">
 				</form>
 			</div>
 			<div class="col">Select a moon to see data</div>
@@ -107,18 +107,17 @@
 		<div class="row">
 			<div class="col">
 				Select an Asteroid
-				
-				<?php 
-					$query = "SELECT AName FROM asteroid";
-					$response = @mysqli_query($dbc, $query);
-					echo "<select name=\"asteroid_select\" class=\"form-control\">";
-					while ($row = mysqli_fetch_array($response)) {
-						echo '<option value="' . $row['AName'] . '">' . $row['AName'] . '</option>';
-					}
-				?>
-				
-				<form class="form-group">
-					<input type="submit" class="btn btn-primary" value="Asteroid">
+				<form id="asteroid_form" class="form-group">
+					<?php 
+						$query = "SELECT AName FROM asteroid";
+						$response = @mysqli_query($dbc, $query);
+						echo "<select name=\"asteroid_select\" class=\"form-control\">";
+						while ($row = mysqli_fetch_array($response)) {
+							echo '<option value="' . $row['AName'] . '">' . $row['AName'] . '</option>';
+						}
+					?>
+					</select>
+					<input type="submit" class="btn btn-info" value="Asteroid">
 				</form>
 			</div>
 			<div class="col">Select an Asteroid to see data</div>
@@ -126,18 +125,17 @@
 		<div class="row">
 			<div class="col">
 				Select a Meteor
-				
-				<?php 
-					$query = "SELECT MeteorName FROM meteor";
-					$response = @mysqli_query($dbc, $query);
-					echo "<select name=\"meteor_select\" class=\"form-control\">";
-					while ($row = mysqli_fetch_array($response)) {
-						echo '<option value="' . $row['MeteorName'] . '">' . $row['MeteorName'] . '</option>';
-					}
-				?>
-				</select>
-				<form class="form-group">
-					<input type="submit" class="btn btn-primary" value="Meteor">
+				<form id="meteor_form" class="form-group">	
+					<?php 
+						$query = "SELECT MeteorName FROM meteor";
+						$response = @mysqli_query($dbc, $query);
+						echo "<select name=\"meteor_select\" class=\"form-control\">";
+						while ($row = mysqli_fetch_array($response)) {
+							echo '<option value="' . $row['MeteorName'] . '">' . $row['MeteorName'] . '</option>';
+						}
+					?>
+					</select>
+					<input type="submit" class="btn btn-danger" value="Meteor">
 				</form>
 			</div>
 			<div class="col">Select a Meteor to see data</div>
