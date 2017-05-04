@@ -32,7 +32,7 @@
 				. " level access.";
 				
 	?>
-	<td align="center"><form action="logout.php"><input type="submit" value="Log Out" /></form></td>
+	<td align="center"><form action="logout.php"><input type="submit" class="btn btn-primary" value="Log Out" /></form></td>
 
 	</td>
 	</tr>
@@ -51,13 +51,26 @@
 		<div class="row">
 			<div class="col">
 				<p>Select a star</p>
-				<form class="form-group">
-					<select class="form-control">
+				<form id="star_form" class="form-group">
+					<select name="star_select" class="form-control">
 					</select>
-					<input type="submit" class="btn btn-primary" value="Star">
+					<input type="submit" class="btn btn-warning" value="Star">
 				</form>
 			</div>
-			<div class="col">hi</div>
+			<div class="col">Select a star to see data</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				Select a planet
+				<form id="planet_form" class="form-group">
+					<select name="planet_select" class="form-control">
+					</select>
+					<input type="submit" class="btn btn-success" value="Planet">
+				</form>
+			</div> 
+			<div class="col">
+				Select a planet to see data
+			</div>
 		</div>
 	</div>
 </body>
