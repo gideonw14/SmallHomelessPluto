@@ -26,7 +26,6 @@
 	<td><b><span style="font-size:large;"> Solar System Database</span></b></td>
 	<td align="right">
 
-
 	<?php
 		echo "You are logged in as " . $_SESSION['user'] . " and you have " . $_SESSION['accesslevel']
 				. " level access.";
@@ -37,12 +36,22 @@
 	</td>
 	</tr>
 	<tr>
-	<td width="20%">
-	<p>&nbsp;Planets &amp; Moons</p>
-	<p>Asteroids &amp; Meteors</p>
-	<p>Stars</p>
+	<td colspan="4">
+	
+	Select Star:
+	
+	<?php
+	$query = "SELECT SName FROM star";
+	$response = @mysqli_query($dbc, $query);
+	echo "<select name=\"StarSelect\">";
+	while ($row = mysqli_fetch_array($response)) {
+		echo '<option value="' . $row['SName'] . '">' . $row['SName'] . '</option>';
+	}
+	?>
+	
+	<input type="submit" value="Submit" />
+	
 	</td>
-	<td colspan="4">&nbsp;</td>
 	</tr>
 	</tbody>
 	</table>
