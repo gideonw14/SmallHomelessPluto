@@ -98,7 +98,7 @@
 					?>
 					
 					</select>
-					<input type="submit" class="btn btn-warning" value="Moon">
+					<input type="submit" class="btn btn-primary" value="Moon">
 				</form>
 			</div>
 			<div class="col">Select a moon to see data</div>
@@ -106,8 +106,8 @@
 		<div class="row">
 			<div class="col">
 				Select an Asteroid
-				<form class="form-group">
-					<input type="submit" class="btn btn-primary" value="Asteroid">
+				<form id="asteroid_form" class="form-group">
+					<input type="submit" class="btn btn-info" value="Asteroid">
 				</form>
 			</div>
 			<div class="col">Select an Asteroid to see data</div>
@@ -115,8 +115,8 @@
 		<div class="row">
 			<div class="col">
 				Select a Meteor
-				<form class="form-group">
-					<input type="submit" class="btn btn-primary" value="Meteor">
+				<form id="meteor_form" class="form-group">
+					<input type="submit" class="btn btn-danger" value="Meteor">
 				</form>
 			</div>
 			<div class="col">Select a Meteor to see data</div>
