@@ -3,3 +3,7 @@ function starChange() {
 	$.get("logout.php");
 	return false;
 }
+
+function showFormFields() {
+	$
+}
