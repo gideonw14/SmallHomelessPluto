@@ -93,8 +93,8 @@
 	<?php
          if($_SESSION['type_select'] != "Planet") echo '<p hidden>';
                 echo 
-					'<br />Dwarf Planet:<br /><input type="radio" name="dwarf" value="1" /> Yes
-										<br /><input type="radio" name="dwarf" value="0" /> No<br /><br />
+				'<br />Dwarf Planet:<br /><input type="radio" name="dwarf" value="1" checked="checked" /> Yes
+									<br /><input type="radio" name="dwarf" value="0" /> No<br /><br />
 				
 				Population: <input class="form-control" type="number" name="population" /><br />
 				
@@ -133,7 +133,7 @@
 	
 	<?php
             if($_SESSION['type_select'] != "Asteroid") echo '<p hidden>';
-                echo 'Member of an Asteroid Belt: <br /> <input type="radio" name="belt" value="1" /> Yes<br />
+                echo 'Member of an Asteroid Belt: <br /> <input type="radio" name="belt" value="1" checked="true" /> Yes<br />
 						<input type="radio" name="belt" value="0" /> No<br /><br />
 				
 			Asteroid Number: <input type="number" name="asteroid_number" class="form-control" /><br />
@@ -163,7 +163,7 @@
 			
 			Date (Became Meteor): <input class="form-control" type="date" name="meteor_date" /><br />
 			
-			Struck Surface: <br /><input type="radio" name="struck" value="1" /> Yes<br />
+			Struck Surface: <br /><input type="radio" name="struck" value="1" checked="true" /> Yes<br />
 								  <input type="radio" name="struck" value="0" /> No';
      
             if($_SESSION['type_select'] != "Meteor") echo '</p>'; 
