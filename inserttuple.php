@@ -55,8 +55,7 @@ if ($type == "Meteor") {
 	$date = $_GET['meteor_date'];
 	$planet = $_GET['planet'];
 	$struck = $_GET['struck'];
-	
-	if ($date == "" || $planet == "" || $struck = "") {
+	if ($date == "" || $planet == "" || $struck == "") {
 		$bad = "1";
 	}
 }
@@ -77,10 +76,34 @@ if ($type == "" || $name == "" || $mass == "" || $diameter == "" || $dateDiscove
 		$row = mysqli_fetch_array($res);
 		$planetNum = $row['mymax'] + 1;
 		
-		$query = 'INSERT INTO `planet` VALUES ("' . $name . '","' . $isdwarf . '","' . $planetNum . '","' . $population . '","' . $orbit_dist . '","' . $year_len . '","' . $surf_temp . '", "' . $orbits . '")';
+		echo 'INSERT INTO `planet` VALUES ("' . $name . '","' . $isdwarf . '","' . $planetNum . '","' . $population . '","' . $orbit_dist . '","' . $year_len . '","' . $surf_temp . '", "' . $orbits . '")';
 		$response = @mysqli_query($dbc, $query);
 	}
 	
-	//header("refresh:0;create.php");
+	if ($type == "Star") {
+		$query = 'INSERT INTO `star` VALUES ("' . $name . '", "' . $starTemp . '")';
+		$response = @mysqli_query($dbc, $query);
+	}
+	
+	if ($type == "Moon") {
+		$query = "SELECT Max(`Moon Number`) AS mymax FROM moon";
+		$res = @mysqli_query($dbc, $query);
+		$row = mysqli_fetch_array($res);
+		$moonNum = $row['mymax'] + 1;
+		
+		$query = 'INSERT INTO `moon` VALUES ("' . $name . '", "' . $orbits . '", "' . $moonNum . '", "' . $orbit_dist . '", "' . $orbit_time . '")';
+		$response = @mysqli_query($dbc, $query);
+	}
+	
+	if ($type == "Asteroid") {
+		$query = 'INSERT INTO `asteroid` VALUES ("' . $name . '", "' . $orbits . '", "' . $member_AB . '", "' . $aster_num . '")';
+		$response = @mysqli_query($dbc, $query);
+	}
+	
+	if ($type == "Meteor") {
+		$query = 'INSERT INTO `meteor` VALUES ("' . $name . '", "' . $planet . '", "' . $date . '", "' . $struck . '")';
+		$response = @mysqli_query($dbc, $query);
+	}
+	header("refresh:0;MainPage.php");
 }
 ?>

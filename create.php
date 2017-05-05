@@ -136,7 +136,16 @@
                 echo 'Member of an Asteroid Belt: <br /> <input type="radio" name="belt" value="1" /> Yes<br />
 						<input type="radio" name="belt" value="0" /> No<br /><br />
 				
-			Asteroid Number: <input type="number" name="asteroid_number" class="form-control" /><br />';
+			Asteroid Number: <input type="number" name="asteroid_number" class="form-control" /><br />
+			
+			Orbits around:';
+			$query = "SELECT SName FROM star";
+			$response = @mysqli_query($dbc, $query);
+			echo "<select name=\"orbits\" class=\"form-control\">";
+			while ($row = mysqli_fetch_array($response)) {
+				echo '<option value="' . $row['SName'] . '">' . $row['SName'] . '</option>';
+			}
+			echo'</select>';
 			
             if($_SESSION['type_select'] != "Asteroid") echo '</p>';
         ?>
@@ -155,7 +164,7 @@
 			Date (Became Meteor): <input class="form-control" type="date" name="meteor_date" /><br />
 			
 			Struck Surface: <br /><input type="radio" name="struck" value="1" /> Yes<br />
-						<input type="radio" name="struck" value="0" /> No';
+								  <input type="radio" name="struck" value="0" /> No';
      
             if($_SESSION['type_select'] != "Meteor") echo '</p>'; 
         ?>	

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 04, 2017 at 04:17 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Host: 127.0.0.1
+-- Generation Time: May 05, 2017 at 06:33 AM
+-- Server version: 5.7.14
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,39 +17,39 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Small Homeless Pluto`
+-- Database: `solarsystem`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Asteroid`
+-- Table structure for table `asteroid`
 --
 
-CREATE TABLE `Asteroid` (
+CREATE TABLE `asteroid` (
   `AName` varchar(15) NOT NULL,
+  `SName` varchar(15) NOT NULL,
   `Member of AB` tinyint(1) DEFAULT NULL,
-  `Asteroid Number` int(11) DEFAULT NULL,
-  `SName` varchar(15) NOT NULL
+  `Asteroid Number` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Asteroid`
+-- Dumping data for table `asteroid`
 --
 
-INSERT INTO `Asteroid` (`AName`, `Member of AB`, `Asteroid Number`) VALUES
-('Ceres', 1, 1),
-('Palma', 0, 372),
-('Pallas', 1, 2),
-('Vesta', 1, 4);
+INSERT INTO `asteroid` (`AName`, `SName`, `Member of AB`, `Asteroid Number`) VALUES
+('Ceres', 'Sun', 1, 1),
+('Palma', 'Sun', 0, 372),
+('Pallas', 'Sun', 1, 2),
+('Vesta', 'Sun', 1, 4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Celestial Body`
+-- Table structure for table `celestial body`
 --
 
-CREATE TABLE `Celestial Body` (
+CREATE TABLE `celestial body` (
   `Name` varchar(15) NOT NULL,
   `Gravity` float DEFAULT NULL,
   `Mass` float DEFAULT NULL,
@@ -58,10 +58,10 @@ CREATE TABLE `Celestial Body` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Celestial Body`
+-- Dumping data for table `celestial body`
 --
 
-INSERT INTO `Celestial Body` (`Name`, `Gravity`, `Mass`, `Diameter`, `Date Discovered`) VALUES
+INSERT INTO `celestial body` (`Name`, `Gravity`, `Mass`, `Diameter`, `Date Discovered`) VALUES
 ('Ceres', 0.6, 1794, 946, '1801-01-01'),
 ('Earth', 9.8, 6, 7918, '0001-01-01'),
 ('Io', 1.796, 0.08932, 3643, '1610-05-09'),
@@ -77,20 +77,20 @@ INSERT INTO `Celestial Body` (`Name`, `Gravity`, `Mass`, `Diameter`, `Date Disco
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Composition`
+-- Table structure for table `composition`
 --
 
-CREATE TABLE `Composition` (
+CREATE TABLE `composition` (
   `Name` varchar(15) NOT NULL,
   `Substance` varchar(15) NOT NULL,
   `Percent` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Composition`
+-- Dumping data for table `composition`
 --
 
-INSERT INTO `Composition` (`Name`, `Substance`, `Percent`) VALUES
+INSERT INTO `composition` (`Name`, `Substance`, `Percent`) VALUES
 ('Earth', 'Argon', 0.93),
 ('Earth', 'Nitrogen', 78.08),
 ('Earth', 'Oxygen', 20.95),
@@ -115,10 +115,10 @@ INSERT INTO `Composition` (`Name`, `Substance`, `Percent`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Meteor`
+-- Table structure for table `meteor`
 --
 
-CREATE TABLE `Meteor` (
+CREATE TABLE `meteor` (
   `MeteorName` varchar(15) NOT NULL,
   `PName` varchar(15) NOT NULL,
   `Date` date DEFAULT NULL,
@@ -126,19 +126,19 @@ CREATE TABLE `Meteor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Meteor`
+-- Dumping data for table `meteor`
 --
 
-INSERT INTO `Meteor` (`MeteorName`, `PName`, `Date`, `Struck Surface`) VALUES
+INSERT INTO `meteor` (`MeteorName`, `PName`, `Date`, `Struck Surface`) VALUES
 ('Palma', 'Earth', '1957-04-27', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Moon`
+-- Table structure for table `moon`
 --
 
-CREATE TABLE `Moon` (
+CREATE TABLE `moon` (
   `MName` varchar(15) NOT NULL,
   `PName` varchar(15) NOT NULL,
   `Moon Number` int(11) DEFAULT NULL,
@@ -147,20 +147,20 @@ CREATE TABLE `Moon` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Moon`
+-- Dumping data for table `moon`
 --
 
-INSERT INTO `Moon` (`MName`, `PName`, `Moon Number`, `Orbit Distance`, `Orbit Time`) VALUES
+INSERT INTO `moon` (`MName`, `PName`, `Moon Number`, `Orbit Distance`, `Orbit Time`) VALUES
 ('Io', 'Jupiter', 2, 422000, 1.769),
 ('Moon', 'Earth', 1, 385000, 27);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Planet`
+-- Table structure for table `planet`
 --
 
-CREATE TABLE `Planet` (
+CREATE TABLE `planet` (
   `PName` varchar(15) NOT NULL,
   `Dwarf Planet` tinyint(1) DEFAULT NULL,
   `Planet Number` int(11) DEFAULT NULL,
@@ -172,10 +172,10 @@ CREATE TABLE `Planet` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Planet`
+-- Dumping data for table `planet`
 --
 
-INSERT INTO `Planet` (`PName`, `Dwarf Planet`, `Planet Number`, `Population`, `Orbit Distance`, `Year Length`, `Average Surface Temp`, `SName`) VALUES
+INSERT INTO `planet` (`PName`, `Dwarf Planet`, `Planet Number`, `Population`, `Orbit Distance`, `Year Length`, `Average Surface Temp`, `SName`) VALUES
 ('Earth', 0, 1, 7000, 150, 1, 16, 'Sun'),
 ('Jupiter', 0, 4, 0, 778, 4332.59, 165, 'Sun'),
 ('Mars', 0, 2, 0, 288, 687, -63, 'Sun'),
@@ -184,68 +184,89 @@ INSERT INTO `Planet` (`PName`, `Dwarf Planet`, `Planet Number`, `Population`, `O
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Star`
+-- Table structure for table `star`
 --
 
-CREATE TABLE `Star` (
+CREATE TABLE `star` (
   `SName` varchar(15) NOT NULL,
   `Surface Temp` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Star`
+-- Dumping data for table `star`
 --
 
-INSERT INTO `Star` (`SName`, `Surface Temp`) VALUES
+INSERT INTO `star` (`SName`, `Surface Temp`) VALUES
 ('Sun', 5778);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `username` varchar(25) NOT NULL,
+  `password` varchar(25) NOT NULL,
+  `accesslevel` varchar(25) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`username`, `password`, `accesslevel`) VALUES
+('root', '', 'Admin'),
+('Astronomer1', 'ilikespace', 'Admin');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `Asteroid`
+-- Indexes for table `asteroid`
 --
-ALTER TABLE `Asteroid`
-  ADD KEY `Ast_Name` (`AName`);
+ALTER TABLE `asteroid`
+  ADD KEY `Ast_Name` (`AName`),
+  ADD KEY `SName` (`SName`);
 
 --
--- Indexes for table `Celestial Body`
+-- Indexes for table `celestial body`
 --
-ALTER TABLE `Celestial Body`
+ALTER TABLE `celestial body`
   ADD PRIMARY KEY (`Name`);
 
 --
--- Indexes for table `Composition`
+-- Indexes for table `composition`
 --
-ALTER TABLE `Composition`
+ALTER TABLE `composition`
   ADD PRIMARY KEY (`Name`,`Substance`);
 
 --
--- Indexes for table `Meteor`
+-- Indexes for table `meteor`
 --
-ALTER TABLE `Meteor`
+ALTER TABLE `meteor`
   ADD PRIMARY KEY (`MeteorName`),
   ADD KEY `Meteor_Planet` (`PName`);
 
 --
--- Indexes for table `Moon`
+-- Indexes for table `moon`
 --
-ALTER TABLE `Moon`
+ALTER TABLE `moon`
   ADD PRIMARY KEY (`MName`),
   ADD KEY `Moon_Planet` (`PName`);
 
 --
--- Indexes for table `Planet`
+-- Indexes for table `planet`
 --
-ALTER TABLE `Planet`
+ALTER TABLE `planet`
   ADD PRIMARY KEY (`PName`),
   ADD KEY `Planet_Star` (`SName`);
 
 --
--- Indexes for table `Star`
+-- Indexes for table `star`
 --
-ALTER TABLE `Star`
+ALTER TABLE `star`
   ADD PRIMARY KEY (`SName`);
 
 --
@@ -253,43 +274,44 @@ ALTER TABLE `Star`
 --
 
 --
--- Constraints for table `Asteroid`
+-- Constraints for table `asteroid`
 --
-ALTER TABLE `Asteroid`
-  ADD CONSTRAINT `Ast_Name` FOREIGN KEY (`AName`) REFERENCES `Celestial Body` (`Name`);
+ALTER TABLE `asteroid`
+  ADD CONSTRAINT `Ast_Name` FOREIGN KEY (`AName`) REFERENCES `celestial body` (`Name`),
+  ADD CONSTRAINT `asteroid_ibfk_1` FOREIGN KEY (`SName`) REFERENCES `star` (`SName`);
 
 --
--- Constraints for table `Composition`
+-- Constraints for table `composition`
 --
-ALTER TABLE `Composition`
-  ADD CONSTRAINT `Comp_Name` FOREIGN KEY (`Name`) REFERENCES `Celestial Body` (`Name`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `composition`
+  ADD CONSTRAINT `Comp_Name` FOREIGN KEY (`Name`) REFERENCES `celestial body` (`Name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `Meteor`
+-- Constraints for table `meteor`
 --
-ALTER TABLE `Meteor`
-  ADD CONSTRAINT `Meteor_Name` FOREIGN KEY (`MeteorName`) REFERENCES `Celestial Body` (`Name`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Meteor_Planet` FOREIGN KEY (`PName`) REFERENCES `Planet` (`PName`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `meteor`
+  ADD CONSTRAINT `Meteor_Name` FOREIGN KEY (`MeteorName`) REFERENCES `celestial body` (`Name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Meteor_Planet` FOREIGN KEY (`PName`) REFERENCES `planet` (`PName`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `Moon`
+-- Constraints for table `moon`
 --
-ALTER TABLE `Moon`
-  ADD CONSTRAINT `Moon_Name` FOREIGN KEY (`MName`) REFERENCES `Celestial Body` (`Name`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Moon_Planet` FOREIGN KEY (`PName`) REFERENCES `Planet` (`PName`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `moon`
+  ADD CONSTRAINT `Moon_Name` FOREIGN KEY (`MName`) REFERENCES `celestial body` (`Name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Moon_Planet` FOREIGN KEY (`PName`) REFERENCES `planet` (`PName`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `Planet`
+-- Constraints for table `planet`
 --
-ALTER TABLE `Planet`
-  ADD CONSTRAINT `Planet_Name` FOREIGN KEY (`PName`) REFERENCES `Celestial Body` (`Name`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Planet_Star` FOREIGN KEY (`SName`) REFERENCES `Star` (`SName`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `planet`
+  ADD CONSTRAINT `Planet_Name` FOREIGN KEY (`PName`) REFERENCES `celestial body` (`Name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Planet_Star` FOREIGN KEY (`SName`) REFERENCES `star` (`SName`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `Star`
+-- Constraints for table `star`
 --
-ALTER TABLE `Star`
-  ADD CONSTRAINT `Star_Name` FOREIGN KEY (`SName`) REFERENCES `Celestial Body` (`Name`);
+ALTER TABLE `star`
+  ADD CONSTRAINT `Star_Name` FOREIGN KEY (`SName`) REFERENCES `celestial body` (`Name`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
