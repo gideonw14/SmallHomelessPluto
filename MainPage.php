@@ -83,9 +83,9 @@
 					if ($response) {
 						while($row = mysqli_fetch_array($response)) {
 							echo '<b>Star Name: </b>' . $row['Name'] .
-							'<br /><b>Gravity: </b>' . $row['Gravity'] .
-							'<br /><b>Mass: </b>' . $row['Mass'] .
-							'<br /><b>Diameter: </b>' . $row['Diameter'] .
+							'<br /><b>Gravity: </b>' . $row['Gravity'] . '<b> m/s^2</b>' .
+                            '<br /><b>Mass: </b>' . $row['Mass'] . '<b> * 10^24 kg</b>' .
+							'<br /><b>Diameter: </b>' . $row['Diameter'] . '<b> km</b>' .
 							'<br /><b>Date Discovered: </b>' . $row['Date Discovered'];
 						}
 						echo '</table>';
@@ -95,7 +95,7 @@
 					$response = @mysqli_query($dbc, $query);
 					if ($response) {
 						while($row = mysqli_fetch_array($response))
-							echo '<br /><b>Average Surface Temperature: </b>' . $row['Surface Temp'];
+							echo '<br /><b>Average Surface Temperature: </b>' . $row['Surface Temp'] .  '<b> degrees (C)</b>';
 					}
 				}
 				
@@ -139,9 +139,9 @@
 						if ($response) {
 							while($row = mysqli_fetch_array($response)) {
 								echo '<b>Planet Name: </b>' . $row['Name'] .
-								'<br /><b>Gravity: </b>' . $row['Gravity'] .
-								'<br /><b>Mass: </b>' . $row['Mass'] .
-								'<br /><b>Diameter: </b>' . $row['Diameter'] .
+								'<br /><b>Gravity: </b>' . $row['Gravity'] . '<b> m/s^2</b>' .
+								'<br /><b>Mass: </b>' . $row['Mass'] . '<b> * 10^24 kg</b>' .
+								'<br /><b>Diameter: </b>' . $row['Diameter'] . '<b> km</b>' .
 								'<br /><b>Date Discovered: </b>' . $row['Date Discovered'];
 							}
 							echo '</table>';
@@ -159,10 +159,9 @@
 								
 								echo
 								'<br /><b>Planet Number: </b>' . $row['Planet Number'] .
-								'<br /><b>Population: </b>' . $row['Population'] .
-								'<br /><b>Orbit Distance: </b>' . $row['Orbit Distance'] .
-								'<br /><b>Year Length: </b>' . $row['Year Length'] .
-								'<br /><b>Average Surface Temperature: </b>' . $row['Average Surface Temp'];
+								'<br /><b>Population: </b>' . $row['Population'] . '<b> (in Millions of Inhabitants)</b>' .
+								'<br /><b>Orbit Distance: </b>' . $row['Orbit Distance'] . '<b> * 10^6 km</b>' .
+								'<br /><b>Year Length: </b>' . $row['Year Length'] . '<b> Earth Days</b>';
 							}
 						}
 					}
@@ -209,9 +208,9 @@
 						if ($response) {
 							while($row = mysqli_fetch_array($response)) {
 								echo '<b>Moon Name: </b>' . $row['Name'] .
-								'<br /><b>Gravity: </b>' . $row['Gravity'] .
-								'<br /><b>Mass: </b>' . $row['Mass'] .
-								'<br /><b>Diameter: </b>' . $row['Diameter'] .
+								'<br /><b>Gravity: </b>' . $row['Gravity'] . '<b> m/s^2</b>' .
+								'<br /><b>Mass: </b>' . $row['Mass'] . '<b> * 10^24 kg</b>' .
+								'<br /><b>Diameter: </b>' . $row['Diameter'] . '<b> km</b>' .
 								'<br /><b>Date Discovered: </b>' . $row['Date Discovered'];
 							}
 							echo '</table>';
@@ -223,8 +222,8 @@
 							while($row = mysqli_fetch_array($response)) {					
 								echo
 								'<br /><b>Moon Number: </b>' . $row['Moon Number'] .
-								'<br /><b>Orbit Distance: </b>' . $row['Orbit Distance'] .
-								'<br /><b>Orbit Time: </b>' . $row['Orbit Time'];
+								'<br /><b>Orbit Distance: </b>' . $row['Orbit Distance'] . '<b> km</b>' .
+								'<br /><b>Orbit Time: </b>' . $row['Orbit Time'] . '<b> Earth Days</b>';
 							}
 						}
 					}
@@ -271,9 +270,9 @@
 						if ($response) {
 							while($row = mysqli_fetch_array($response)) {
 								echo '<b>Asteroid Name: </b>' . $row['Name'] .
-								'<br /><b>Gravity: </b>' . $row['Gravity'] .
-								'<br /><b>Mass: </b>' . $row['Mass'] .
-								'<br /><b>Diameter: </b>' . $row['Diameter'] .
+								'<br /><b>Gravity: </b>' . $row['Gravity'] . '<b> m/s^2</b>' .
+								'<br /><b>Mass: </b>' . $row['Mass'] . '<b> * 10^24 kg</b>' .
+								'<br /><b>Diameter: </b>' . $row['Diameter'] . '<b> km</b>' .
 								'<br /><b>Date Discovered: </b>' . $row['Date Discovered'];
 							}
 							echo '</table>';
@@ -340,9 +339,9 @@
 						if ($response) {
 							while($row = mysqli_fetch_array($response)) {
 								echo '<b>Meteor Name: </b>' . $row['Name'] .
-								'<br /><b>Gravity: </b>' . $row['Gravity'] .
-								'<br /><b>Mass: </b>' . $row['Mass'] .
-								'<br /><b>Diameter: </b>' . $row['Diameter'] .
+								'<br /><b>Gravity: </b>' . $row['Gravity'] . '<b> m/s^2</b>' .
+								'<br /><b>Mass: </b>' . $row['Mass'] . '<b> * 10^24 kg</b>' .
+								'<br /><b>Diameter: </b>' . $row['Diameter'] . '<b> km</b>' .
 								'<br /><b>Date Discovered: </b>' . $row['Date Discovered'];
 							}
 							echo '</table>';
