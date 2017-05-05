@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+<?php
+	session_start();
+	require_once('sqlconnect.php');
+?>
 <head>
 	<title>Small Homeless Pluto</title>
 	<!-- jQuery library - required for Bootstrap to work -->
@@ -20,7 +24,75 @@
 <body>
 	<a href="MainPage.php" class="btn btn-primary">Back</a>
 	<div>
+		<form action="deleteselection.php" method="get">
 		Select what you would like to delete:
+		<select name="dtype_select" class="form-control">
+		<option value=""></option>
+		<?php 
+			if ($_SESSION['dtype_select'] == "Star") {
+				echo '<option value="Star" selected>Star</option>';
+			} else {
+				echo '<option value="Star">Star</option>';
+			}
+			
+			if ($_SESSION['dtype_select'] == "Planet") {
+				echo '<option value="Planet" selected>Planet</option>';
+			} else {
+				echo '<option value="Planet">Planet</option>';
+			}
+			
+			if ($_SESSION['dtype_select'] == "Moon") {
+				echo '<option value="Moon" selected>Moon</option>';
+			} else {
+				echo '<option value="Moon">Moon</option>';
+			}
+			
+			if ($_SESSION['dtype_select'] == "Asteroid") {
+				echo '<option value="Asteroid" selected>Asteroid</option>';
+			} else {
+				echo '<option value="Asteroid">Asteroid</option>';
+			}
+			
+			if ($_SESSION['dtype_select'] == "Meteor") {
+				echo '<option value="Meteor" selected>Meteor</option>';
+			} else {
+				echo '<option value="Meteor">Meteor</option>';
+			}
+		?>
+		</select>
+		<input type="submit" value="Select Type" />
+		</form>
+		
+		<form action="deletefromDB.php" method="get">
+		<?php 
+		if ($_SESSION['dtype_select'] != '') {
+			echo 'Which would you like to delete?';
+			echo '<select name="deletion_select" class="form-control">';
+		}  
+		?>
+		
+		<?php
+		if ($_SESSION['dtype_select'] == 'Star') {
+			$query = "SELECT SName FROM star";
+			$response = @mysqli_query($dbc, $query);
+			echo '<option value=""></option>';
+			while ($row = mysqli_fetch_array($response)) {
+				if ($_SESSION['dstar_select'] == $row['SName']) {
+					echo '<option value="' . $row['SName'] . '" selected>' . $row['SName'] . '</option>';
+				} else {
+					echo '<option value="' . $row['SName'] . '">' . $row['SName'] . '</option>';
+				}
+			}
+		}
+		?>
+		
+		<?php
+			if ($_SESSION['dtype_select'] != '') {
+				echo '</select>';
+			}
+		?>
+		</form>
+		
 	</div>
 </body>
 </html>

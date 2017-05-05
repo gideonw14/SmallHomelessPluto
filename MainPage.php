@@ -67,7 +67,6 @@
 					?>
 					
 					</select>
-					
 			</div>
 			<div class="col">
 			
@@ -126,7 +125,47 @@
 			</div> 
 			<div class="col">
 				<?php if ($_SESSION['star_select'] == "") echo '<p hidden>'; ?>
-				Select a planet to see data
+				
+				<?php
+					if ($_SESSION['planet_select'] == "") {
+						echo 'Select a planet to see information about that planet.';
+					} else {
+						$query = "SELECT * FROM `celestial body` WHERE `Name` = '" . $_SESSION['planet_select'] . "'";
+						$response = @mysqli_query($dbc, $query);
+						
+						if ($response) {
+							while($row = mysqli_fetch_array($response)) {
+								echo '<b>Planet Name: </b>' . $row['Name'] .
+								'<br /><b>Gravity: </b>' . $row['Gravity'] .
+								'<br /><b>Mass: </b>' . $row['Mass'] .
+								'<br /><b>Diameter: </b>' . $row['Diameter'] .
+								'<br /><b>Date Discovered: </b>' . $row['Date Discovered'];
+							}
+							echo '</table>';
+						}
+						
+						$query = "SELECT * FROM `planet` WHERE `PName` = '" . $_SESSION['planet_select'] . "'";
+						$response = @mysqli_query($dbc, $query);
+						if ($response) {
+							while($row = mysqli_fetch_array($response)) {
+								if ($row['Dwarf Planet'] == 0) {
+									echo '<br /><b>Dwarf Planet:</b> No';
+								} else {
+									echo '<br /><b>Dwarf Planet:</b> Yes';
+								}
+								
+								echo
+								'<br /><b>Planet Number: </b>' . $row['Planet Number'] .
+								'<br /><b>Population: </b>' . $row['Population'] .
+								'<br /><b>Orbit Distance: </b>' . $row['Orbit Distance'] .
+								'<br /><b>Year Length: </b>' . $row['Year Length'] .
+								'<br /><b>Average Surface Temperature: </b>' . $row['Average Surface Temp'];
+							}
+						}
+					}
+					
+				?>
+				
 				<?php if ($_SESSION['star_select'] == "") echo '</p>'; ?>
 			</div>
 		</div>
@@ -156,7 +195,39 @@
 			</div>
 			<div class="col">
 			<?php if ($_SESSION['planet_select'] == "") echo '<p hidden>'; ?>
-			Select a moon to see data
+			
+			<?php
+					if ($_SESSION['moon_select'] == "") {
+						echo 'Select a moon to see information about that moon.';
+					} else {
+						$query = "SELECT * FROM `celestial body` WHERE `Name` = '" . $_SESSION['moon_select'] . "'";
+						$response = @mysqli_query($dbc, $query);
+						
+						if ($response) {
+							while($row = mysqli_fetch_array($response)) {
+								echo '<b>Moon Name: </b>' . $row['Name'] .
+								'<br /><b>Gravity: </b>' . $row['Gravity'] .
+								'<br /><b>Mass: </b>' . $row['Mass'] .
+								'<br /><b>Diameter: </b>' . $row['Diameter'] .
+								'<br /><b>Date Discovered: </b>' . $row['Date Discovered'];
+							}
+							echo '</table>';
+						}
+						
+						$query = "SELECT * FROM `moon` WHERE `MName` = '" . $_SESSION['moon_select'] . "'";
+						$response = @mysqli_query($dbc, $query);
+						if ($response) {
+							while($row = mysqli_fetch_array($response)) {					
+								echo
+								'<br /><b>Moon Number: </b>' . $row['Moon Number'] .
+								'<br /><b>Orbit Distance: </b>' . $row['Orbit Distance'] .
+								'<br /><b>Orbit Time: </b>' . $row['Orbit Time'];
+							}
+						}
+					}
+					
+				?>
+			
 			<?php if ($_SESSION['planet_select'] == "") echo '</p>'; ?>
 			</div>
 		</div>
@@ -186,7 +257,43 @@
 			</div>
 			<div class="col">
 			<?php if ($_SESSION['star_select'] == "") echo '<p hidden>'; ?>
-			Select an Asteroid to see data
+			
+			<?php
+					if ($_SESSION['asteroid_select'] == "") {
+						echo 'Select an asteroid to see information about that asteroid.';
+					} else {
+						$query = "SELECT * FROM `celestial body` WHERE `Name` = '" . $_SESSION['asteroid_select'] . "'";
+						$response = @mysqli_query($dbc, $query);
+						
+						if ($response) {
+							while($row = mysqli_fetch_array($response)) {
+								echo '<b>Asteroid Name: </b>' . $row['Name'] .
+								'<br /><b>Gravity: </b>' . $row['Gravity'] .
+								'<br /><b>Mass: </b>' . $row['Mass'] .
+								'<br /><b>Diameter: </b>' . $row['Diameter'] .
+								'<br /><b>Date Discovered: </b>' . $row['Date Discovered'];
+							}
+							echo '</table>';
+						}
+						
+						$query = "SELECT * FROM `asteroid` WHERE `PName` = '" . $_SESSION['asteroid_select'] . "'";
+						$response = @mysqli_query($dbc, $query);
+						if ($response) {
+							while($row = mysqli_fetch_array($response)) {
+								if ($row['Member of AB'] == 0) {
+									echo '<br /><b>Member of Asteroid Belt: No';
+								} else {
+									echo '<br /><b>Member of Asteroid Belt: Yes';
+								}
+								
+								echo
+								'<br /><b>Asteroid Number: </b>' . $row['Planet Number'];
+							}
+						}
+					}
+					
+				?>
+			
 			<?php if ($_SESSION['star_select'] == "") echo '</p>'; ?>
 			</div>
 		</div>
@@ -219,7 +326,43 @@
 			</div>
 			<div class="col">
 			<?php if ($_SESSION['planet_select'] == "") echo '<p hidden>';?>
-			Select a Meteor to see data
+			
+			<?php
+					if ($_SESSION['meteor_select'] == "") {
+						echo 'Select a meteor to see information about that meteor.';
+					} else {
+						$query = "SELECT * FROM `celestial body` WHERE `Name` = '" . $_SESSION['meteor_select'] . "'";
+						$response = @mysqli_query($dbc, $query);
+						
+						if ($response) {
+							while($row = mysqli_fetch_array($response)) {
+								echo '<b>Meteor Name: </b>' . $row['Name'] .
+								'<br /><b>Gravity: </b>' . $row['Gravity'] .
+								'<br /><b>Mass: </b>' . $row['Mass'] .
+								'<br /><b>Diameter: </b>' . $row['Diameter'] .
+								'<br /><b>Date Discovered: </b>' . $row['Date Discovered'];
+							}
+							echo '</table>';
+						}
+						
+						$query = "SELECT * FROM `meteor` WHERE `MeteorName` = '" . $_SESSION['meteor_select'] . "'";
+						$response = @mysqli_query($dbc, $query);
+						if ($response) {
+							while($row = mysqli_fetch_array($response)) {
+								echo
+								'<br /><b>Date Became Meteor:</b>' . $row['Date'];
+								
+								if ($row['Struck Surface'] == 0) {
+									echo '<br /><b>Struck Surface: No';
+								} else {
+									echo '<br /><b>Struck Surface: Yes';
+								}
+							}
+						}
+					}
+					
+				?>
+			
 			<?php if ($_SESSION['planet_select'] == "") echo '</p>';?></div>
 		</div>
 	</div>

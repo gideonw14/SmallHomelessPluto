@@ -1,4 +1,5 @@
 <?php
+session_abort();
 session_start();
 
 
@@ -29,6 +30,15 @@ $_SESSION["planet_select"] = "";
 $_SESSION["moon_select"] = "";
 $_SESSION["asteroid_select"] = "";
 $_SESSION["meteor_select"] = "";
+
+$_SESSION["type_select"] = "";
+
+$_SESSION["dtype_select"] = "";
+$_SESSION["dstar_select"] = "";
+$_SESSION["dplanet_select"] = "";
+$_SESSION["dmoon_select"] = "";
+$_SESSION["dasteroid_select"] = "";
+$_SESSION["dmeteor_select"] = "";
 
 header("refresh:0;MainPage.php");
 ?>
