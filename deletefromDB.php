@@ -10,11 +10,25 @@ if ($name == "") {
 	header("refresh:4;delete.php");
 }
 
-$query = 'DELETE FROM `celestial body` WHERE `NAME` = "' . $name . '"';
+$type = strtolower($type);
+
+if ($type = 'star') {
+	$query = 'DELETE FROM `' . $type . '` WHERE `SName` = "' . $name . '"';
+} else if ($type == 'planet') {
+	$query = 'DELETE FROM `' . $type . '` WHERE `PName` = "' . $name . '"';
+} else if ($type == 'moon') {
+	$query = 'DELETE FROM `' . $type . '` WHERE `MName` = "' . $name . '"';
+} else if ($type == 'asteroid') {
+	$query = 'DELETE FROM `' . $type . '` WHERE `AName` = "' . $name . '"';
+} else if ($type == 'meteor') {
+	$query = 'DELETE FROM `' . $type . '` WHERE `MeteorName` = "' . $name . '"';
+}
 $response = @mysqli_query($dbc, $query);
 
 if ($response) {
 	echo 'Successfully deleted ' . $name . '.';
+} else {
+	echo 'There was a problem with the deletion.';
 }
 
 header("refresh:2;delete.php");

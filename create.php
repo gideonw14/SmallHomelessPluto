@@ -55,6 +55,18 @@
             <input type="submit" class="btn btn-default" value="Choose">
 		</form>
 
+		<form action="inserttuple.php" method="get">
+		
+		
+		<label for="name">Name</label>
+		<input type="text" name="name" class="form-control">
+		<label for="mass">Mass</label>
+		<input type="number" name="mass" step="any" class="form-control">
+		<label for="diameter">Diameter</label>
+		<input type="number" name="diameter" class="form-control">
+		<label for="date_discovered">Date Discovered</label>
+		<input type="date" name="date_discovered" class="form-control">
+		
         <?php
             if($_SESSION['type_select'] == "Star") {
                 echo '<p>Star Surface Temperature: <input id="star_temp" name="star_temp" type="number" /></p>';
@@ -63,7 +75,7 @@
 		
 		<?php
             if($_SESSION['type_select'] == "Planet") {
-                echo 'Dwarf Planet: <form><input type="radio" name="dwarf" value="Yes" /> Yes<br />
+                echo '<br />Dwarf Planet: <br /><input type="radio" name="dwarf" value="Yes" /> Yes<br />
 									  <input type="radio" name="dwarf" value="No" /> No</form>
 				
 				Population: <input type="number" name="population" /><br /><br />
@@ -84,18 +96,10 @@
                                 echo'</select>';
             }
         ?>
+		
+		<input type="submit" class="btn btn-default" value="Create">
+		</form>
         <br />
 	</div>
-	<form class="form-group" onsubmit="return false;">
-		<label for="name">Name</label>
-		<input type="text" name="name" class="form-control">
-		<label for="mass">Mass</label>
-		<input type="number" name="mass" step="any" class="form-control">
-		<label for="diameter">Diameter</label>
-		<input type="number" name="diameter" class="form-control">
-		<label for="date_discovered">Date Discovered</label>
-		<input type="date" name="date_discovered" class="form-control">
-		<input type="submit" class="btn btn-default" value="Create">
-	</form>
 </body>
 </html>
