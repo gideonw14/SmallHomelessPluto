@@ -16,6 +16,9 @@
 
 	<!-- Our JS -->
 	<script type="text/javascript" src="./js/main.js"></script>
+
+	<!-- Our CSS -->
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body>
 	<?php 

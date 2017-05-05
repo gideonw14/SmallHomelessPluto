@@ -27,11 +27,12 @@
 		Select what you would like to create:
 		
 		<form>
-			<select name="type_select" class="form-control">
+			<select name="type_select" class="form-control" onsubmit="showFormFields()">
 				<option value="Star">Star</option>
 				<option value="Planet">Planet</option>
 				<option value="Moon">Moon</option>
-				<option value="Star">Asteroid</option>
+				<option value="Meteor">Meteor</option>
+				<option value="Asteroid">Asteroid</option>
 			</select>
 		</form>
 		
