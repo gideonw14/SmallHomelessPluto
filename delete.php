@@ -84,13 +84,70 @@
 				}
 			}
 		}
+		
+		if ($_SESSION['dtype_select'] == 'Planet') {
+			$query = "SELECT PName FROM planet";
+			$response = @mysqli_query($dbc, $query);
+			echo '<option value=""></option>';
+			while ($row = mysqli_fetch_array($response)) {
+				if ($_SESSION['dstar_select'] == $row['PName']) {
+					echo '<option value="' . $row['PName'] . '" selected>' . $row['PName'] . '</option>';
+				} else {
+					echo '<option value="' . $row['PName'] . '">' . $row['PName'] . '</option>';
+				}
+			}
+		}
+		
+		if ($_SESSION['dtype_select'] == 'Moon') {
+			$query = "SELECT MName FROM moon";
+			$response = @mysqli_query($dbc, $query);
+			echo '<option value=""></option>';
+			while ($row = mysqli_fetch_array($response)) {
+				if ($_SESSION['dstar_select'] == $row['MName']) {
+					echo '<option value="' . $row['MName'] . '" selected>' . $row['mName'] . '</option>';
+				} else {
+					echo '<option value="' . $row['MName'] . '">' . $row['MName'] . '</option>';
+				}
+			}
+		}
+		
+		if ($_SESSION['dtype_select'] == 'Asteroid') {
+			$query = "SELECT AName FROM asteroid";
+			$response = @mysqli_query($dbc, $query);
+			echo '<option value=""></option>';
+			while ($row = mysqli_fetch_array($response)) {
+				if ($_SESSION['dstar_select'] == $row['AName']) {
+					echo '<option value="' . $row['AName'] . '" selected>' . $row['AName'] . '</option>';
+				} else {
+					echo '<option value="' . $row['AName'] . '">' . $row['AName'] . '</option>';
+				}
+			}
+		}
+		
+		if ($_SESSION['dtype_select'] == 'Meteor') {
+			$query = "SELECT MeteorName FROM meteor";
+			$response = @mysqli_query($dbc, $query);
+			echo '<option value=""></option>';
+			while ($row = mysqli_fetch_array($response)) {
+				if ($_SESSION['dstar_select'] == $row['MeteorName']) {
+					echo '<option value="' . $row['MeteorName'] . '" selected>' . $row['MeteorName'] . '</option>';
+				} else {
+					echo '<option value="' . $row['MeteorName'] . '">' . $row['MeteorName'] . '</option>';
+				}
+			}
+		}
+		
 		?>
 		
 		<?php
 			if ($_SESSION['dtype_select'] != '') {
+				echo '<input type="submit" name="deletetuple" id="deletetuple" value="DELETE" />';
 				echo '</select>';
 			}
 		?>
+		
+		
+		
 		</form>
 		
 	</div>
