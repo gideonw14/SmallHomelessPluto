@@ -25,6 +25,9 @@ if ($type = 'star') {
 }
 $response = @mysqli_query($dbc, $query);
 
+$query = 'DELETE FROM `celestial body` WHERE `Name` = "' . $name . '"';
+$response = @mysqli_query($dbc, $query);
+
 if ($response) {
 	echo 'Successfully deleted ' . $name . '.';
 } else {

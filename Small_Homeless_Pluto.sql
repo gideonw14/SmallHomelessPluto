@@ -29,7 +29,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `Asteroid` (
   `AName` varchar(15) NOT NULL,
   `Member of AB` tinyint(1) DEFAULT NULL,
-  `Asteroid Number` int(11) DEFAULT NULL
+  `Asteroid Number` int(11) DEFAULT NULL,
+  `SName` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

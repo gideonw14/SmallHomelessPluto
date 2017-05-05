@@ -356,9 +356,9 @@
 								'<br /><b>Date Became Meteor:</b>' . $row['Date'];
 								
 								if ($row['Struck Surface'] == 0) {
-									echo '<br /><b>Struck Surface: No';
+									echo '<br /><b>Struck Surface:</b> No';
 								} else {
-									echo '<br /><b>Struck Surface: Yes';
+									echo '<br /><b>Struck Surface:</b> Yes';
 								}
 							}
 						}
