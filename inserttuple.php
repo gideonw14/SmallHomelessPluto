@@ -34,9 +34,9 @@ if ($type == "Planet") {
 if ($type == "Moon") {
 	$orbit_dist = $_GET['orbit_dist'];
 	$orbit_time = $_GET['year_length'];
-	$orbits = $_GET['orbits'];
+	$morbits = $_GET['morbits'];
 	
-	if ($orbit_dist == "" || $orbit_time == "" || $orbits == "") {
+	if ($orbit_dist == "" || $orbit_time == "" || $morbits == "") {
 		$bad = "1";
 	}
 } 
@@ -44,9 +44,9 @@ if ($type == "Moon") {
 if ($type == "Asteroid") {
 	$member_AB = $_GET['belt'];
 	$aster_num = $_GET['asteroid_number'];
-	$orbits = $_GET['orbits'];
+	$aorbits = $_GET['orbits'];
 	
-	if ($member_AB == "" || $aster_num == "" || $orbits == "") {
+	if ($member_AB == "" || $aster_num == "" || $aorbits == "") {
 		$bad = "1";
 	}
 }
@@ -55,14 +55,16 @@ if ($type == "Meteor") {
 	$date = $_GET['meteor_date'];
 	$planet = $_GET['planet'];
 	$struck = $_GET['struck'];
+	$aster_num = $_GET['asteroid_number'];
+	$aorbits = $_GET['orbits'];
 	if ($date == "" || $planet == "" || $struck == "") {
 		$bad = "1";
 	}
 }
 
 if ($type == "" || $name == "" || $mass == "" || $diameter == "" || $dateDiscovered == "" || $bad == "1") {
-	echo '<font size="+2" color="red">Required feild not filled in.<br />
-			Please be sure to fill in all feilds before pressing insert.</font>
+	echo '<font size="+2" color="red">Required field not filled in.<br />
+			Please be sure to fill in all fields before pressing insert.</font>
 			<br /><br />
 			<a href="create.php">Return</a>';
 } else {
@@ -76,7 +78,7 @@ if ($type == "" || $name == "" || $mass == "" || $diameter == "" || $dateDiscove
 		$row = mysqli_fetch_array($res);
 		$planetNum = $row['mymax'] + 1;
 		
-		echo 'INSERT INTO `planet` VALUES ("' . $name . '","' . $isdwarf . '","' . $planetNum . '","' . $population . '","' . $orbit_dist . '","' . $year_len . '","' . $surf_temp . '", "' . $orbits . '")';
+		$query = 'INSERT INTO `planet` VALUES ("' . $name . '","' . $isdwarf . '","' . $planetNum . '","' . $population . '","' . $orbit_dist . '","' . $year_len . '","' . $surf_temp . '", "' . $orbits . '")';
 		$response = @mysqli_query($dbc, $query);
 	}
 	
@@ -91,16 +93,19 @@ if ($type == "" || $name == "" || $mass == "" || $diameter == "" || $dateDiscove
 		$row = mysqli_fetch_array($res);
 		$moonNum = $row['mymax'] + 1;
 		
-		$query = 'INSERT INTO `moon` VALUES ("' . $name . '", "' . $orbits . '", "' . $moonNum . '", "' . $orbit_dist . '", "' . $orbit_time . '")';
+		$query = 'INSERT INTO `moon` VALUES ("' . $name . '", "' . $morbits . '", "' . $moonNum . '", "' . $orbit_dist . '", "' . $orbit_time . '")';
 		$response = @mysqli_query($dbc, $query);
 	}
 	
 	if ($type == "Asteroid") {
-		$query = 'INSERT INTO `asteroid` VALUES ("' . $name . '", "' . $orbits . '", "' . $member_AB . '", "' . $aster_num . '")';
+		$query = 'INSERT INTO `asteroid` VALUES ("' . $name . '", "' . $aorbits . '", "' . $member_AB . '", "' . $aster_num . '")';
 		$response = @mysqli_query($dbc, $query);
 	}
 	
 	if ($type == "Meteor") {
+		$query = 'INSERT INTO `asteroid` VALUES ("' . $name . '", "' . $aorbits . '", "' . 0 . '", "' . $aster_num . '")';
+		$response = @mysqli_query($dbc, $query);
+		
 		$query = 'INSERT INTO `meteor` VALUES ("' . $name . '", "' . $planet . '", "' . $date . '", "' . $struck . '")';
 		$response = @mysqli_query($dbc, $query);
 	}

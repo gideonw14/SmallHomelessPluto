@@ -12,7 +12,7 @@ if ($name == "") {
 
 $type = strtolower($type);
 
-if ($type = 'star') {
+if ($type == 'star') {
 	$query = 'DELETE FROM `' . $type . '` WHERE `SName` = "' . $name . '"';
 } else if ($type == 'planet') {
 	$query = 'DELETE FROM `' . $type . '` WHERE `PName` = "' . $name . '"';
@@ -21,7 +21,7 @@ if ($type = 'star') {
 } else if ($type == 'asteroid') {
 	$query = 'DELETE FROM `' . $type . '` WHERE `AName` = "' . $name . '"';
 } else if ($type == 'meteor') {
-	$query = 'DELETE FROM `' . $type . '` WHERE `MeteorName` = "' . $name . '"';
+	$query = 'DELETE FROM `asteroid` WHERE `AName` = "' . $name . '"';
 }
 $response = @mysqli_query($dbc, $query);
 

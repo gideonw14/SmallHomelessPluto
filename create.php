@@ -123,7 +123,7 @@
 			In orbit around';
 						$query = "SELECT PName FROM planet";
 						$response = @mysqli_query($dbc, $query);
-						echo "<select name=\"orbits\" class=\"form-control\">";
+						echo "<select name=\"morbits\" class=\"form-control\">";
 						while ($row = mysqli_fetch_array($response)) {
 							echo '<option value="' . $row['PName'] . '">' . $row['PName'] . '</option>';
 						}
@@ -134,20 +134,26 @@
 	<?php
             if($_SESSION['type_select'] != "Asteroid") echo '<p hidden>';
                 echo 'Member of an Asteroid Belt <br /> <input type="radio" name="belt" value="1" checked="true" /> Yes<br />
-						<input type="radio" name="belt" value="0" /> No<br /><br />
-				
-			Asteroid Number <input type="number" name="asteroid_number" class="form-control" /><br />
+						<input type="radio" name="belt" value="0" /> No<br /><br />';
+						
+			if($_SESSION['type_select'] != "Asteroid") echo '</p>';
 			
-			Orbits around';
+			if($_SESSION['type_select'] != "Asteroid" && $_SESSION['type_select'] != "Meteor") echo '<p hidden>';
+			echo 'Asteroid Number <input type="number" name="asteroid_number" class="form-control" /><br />';
+			if($_SESSION['type_select'] != "Asteroid" && $_SESSION['type_select'] != "Meteor") echo '</p>';
+			
+
+			
+			if($_SESSION['type_select'] != "Asteroid" && $_SESSION['type_select'] != "Meteor") echo '<p hidden>';
+			echo 'Orbits around';
 			$query = "SELECT SName FROM star";
 			$response = @mysqli_query($dbc, $query);
-			echo "<select name=\"orbits\" class=\"form-control\">";
+			echo "<select name=\"aorbits\" class=\"form-control\">";
 			while ($row = mysqli_fetch_array($response)) {
 				echo '<option value="' . $row['SName'] . '">' . $row['SName'] . '</option>';
 			}
-			echo'</select>';
-			
-            if($_SESSION['type_select'] != "Asteroid") echo '</p>';
+			echo'</select><br />';
+			if($_SESSION['type_select'] != "Asteroid" && $_SESSION['type_select'] != "Meteor") echo '</p>';
         ?>
 		
 	<?php

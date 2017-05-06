@@ -278,18 +278,18 @@
 							echo '</table>';
 						}
 						
-						$query = "SELECT * FROM `asteroid` WHERE `PName` = '" . $_SESSION['asteroid_select'] . "'";
+						$query = "SELECT * FROM `asteroid` WHERE `AName` = '" . $_SESSION['asteroid_select'] . "'";
 						$response = @mysqli_query($dbc, $query);
 						if ($response) {
 							while($row = mysqli_fetch_array($response)) {
 								if ($row['Member of AB'] == 0) {
-									echo '<br /><b>Member of Asteroid Belt: No';
+									echo '<br /><b>Member of Asteroid Belt:</b> No';
 								} else {
-									echo '<br /><b>Member of Asteroid Belt: Yes';
+									echo '<br /><b>Member of Asteroid Belt:</b> Yes';
 								}
 								
 								echo
-								'<br /><b>Asteroid Number: </b>' . $row['Planet Number'];
+								'<br /><b>Asteroid Number: </b>' . $row['Asteroid Number'];
 							}
 						}
 					}
@@ -323,6 +323,7 @@
 						echo '</select>';
 					?>
 					<?php if ($_SESSION['planet_select'] == "") echo '</p>'; ?>
+					<br />
 				<input type="submit" class="btn btn-warning" value="Select">
 				</form>
 			</div>
@@ -346,6 +347,23 @@
 							}
 							echo '</table>';
 						}
+						
+
+						$query = "SELECT * FROM `asteroid` WHERE `AName` = '" . $_SESSION['meteor_select'] . "'";
+						$response = @mysqli_query($dbc, $query);
+						if ($response) {
+							while($row = mysqli_fetch_array($response)) {
+								if ($row['Member of AB'] == 0) {
+									echo '<br /><b>Member of Asteroid Belt:</b> No';
+								} else {
+									echo '<br /><b>Member of Asteroid Belt:</b> Yes';
+								}
+								
+								echo
+								'<br /><b>Asteroid Number: </b>' . $row['Asteroid Number'];
+							}
+						}
+						
 						
 						$query = "SELECT * FROM `meteor` WHERE `MeteorName` = '" . $_SESSION['meteor_select'] . "'";
 						$response = @mysqli_query($dbc, $query);

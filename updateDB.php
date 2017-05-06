@@ -22,11 +22,12 @@
 	$struck = $_GET['struck_surface'];
 	$mDate = $_GET['meteor_date'];
 	
-	$query = 'UPDATE `celestial body` SET ';
-	if ($gravity != "") $query .= '`Gravity` = "' . $gravity . '" ';
-	if ($mass != "") $query .= ', `Mass` = "' . $mass . '" ';
-	if ($diameter != "") $query .= ', `Diameter` = "' . $gravity . '" ';
-	if ($discovered != "") $query .= ', `Date Discovered` = "' . $discovered . '" ';
+	$query = 'UPDATE `celestial body` SET   ';
+	if ($gravity != "") $query .= '`Gravity` = "' . $gravity . '", ';
+	if ($mass != "") $query .= '`Mass` = "' . $mass . '", ';
+	if ($diameter != "") $query .= '`Diameter` = "' . $diameter . '", ';
+	if ($discovered != "") $query .= '`Date Discovered` = "' . $discovered . '", ';
+	$query = substr($query, 0, strlen($query) - 2);
 	$query .= 'WHERE `Name` = "' . $name . '"';
 	$response = @mysqli_query($dbc, $query);
 	
@@ -39,36 +40,41 @@
 	
 	if ($type == "Planet") {
 		$query = 'UPDATE `planet` SET ';
-		if ($isdwarf != "") $query .= '`Dwarf Planet` = "' . $isdwarf . '" ';
-		if ($population != "") $query .= ', `Population` = "' . $population . '" ';
-		if ($distance != "") $query .= ', `Orbit Distance` = "' . $distance . '" ';
-		if ($year != "") $query .= ', `Year Length` = "' . $year . '"';
-		if ($p_surf_temp != "") $query .= ', `Average Surface Temperature` = "' . $p_surf_temp . '" ';
-		$query .= 'WHERE `PName` = "' . $name . '"';
+		if ($isdwarf != "") $query .= '`Dwarf Planet` = "' . $isdwarf . '", ';
+		if ($population != "") $query .= '`Population` = "' . $population . '", ';
+		if ($distance != "") $query .= '`Orbit Distance` = "' . $distance . '", ';
+		if ($year != "") $query .= '`Year Length` = "' . $year . '", ';
+		if ($p_surf_temp != "") $query .= '`Average Surface Temp` = "' . $p_surf_temp . '", ';
+		$query = substr($query, 0, strlen($query) - 2);
+		$query .= ' WHERE `PName` = "' . $name . '"';
 		$response = @mysqli_query($dbc, $query);
 	}
 	
 	if ($type == "Moon") {
 		$query = 'UPDATE `moon` SET ';
-		if ($mdistance != "") $query .= '`Orbit Distance` = "' . $mdistance . '" ';
-		if ($mOrbitTime != "") $query .= ', `Orbit Timee` = "' . $mOrbitTime . '" ';
-		$query .= 'WHERE `MName` = "' . $name . '"';
+		if ($mdistance != "") $query .= '`Orbit Distance` = "' . $mdistance . '", ';
+		if ($mOrbitTime != "") $query .= '`Orbit Time` = "' . $mOrbitTime . '", ';
+		$query = substr($query, 0, strlen($query) - 2);
+		$query .= ' WHERE `MName` = "' . $name . '"';
+		echo $query;
 		$response = @mysqli_query($dbc, $query);
 	}
 	
 	if ($type == "Asteroid") {
 		$query = 'UPDATE `asteroid` SET ';
-		if ($ABmemeber != "") $query .= '`Member of AB` = "' . $ABmemeber . '" ';
-		if ($asteroid_num != "") $query .= ', `Asteroid Number` = "' . $asteroid_num . '" ';
-		$query .= 'WHERE `AName` = "' . $name . '"';
+		if ($ABmemeber != "") $query .= '`Member of AB` = "' . $ABmemeber . '", ';
+		if ($asteroid_num != "") $query .= '`Asteroid Number` = "' . $asteroid_num . '", ';
+		$query = substr($query, 0, strlen($query) - 2);
+		$query .= ' WHERE `AName` = "' . $name . '"';
 		$response = @mysqli_query($dbc, $query);
 	}
 	
 	if ($type == "Meteor") {
 		$query = 'UPDATE `meteor` SET ';
-		if ($mDate != "") $query .= '`Date` = "' . $mDate . '" ';
-		if ($struck != "") $query .= ', `Struck Surface` = "' . $struck . '" ';
-		$query .= 'WHERE `MeteorName` = "' . $name . '" ';
+		if ($mDate != "") $query .= '`Date` = "' . $mDate . '", ';
+		if ($struck != "") $query .= '`Struck Surface` = "' . $struck . '", ';
+		$query = substr($query, 0, strlen($query) - 2);
+		$query .= ' WHERE `MeteorName` = "' . $name . '" ';
 		$response = @mysqli_query($dbc, $query);
 	}
 	
