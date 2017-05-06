@@ -1,4 +1,5 @@
-<?php
+<?php // This session is used to store the type of celestial body
+	  // the user wants to create
 session_start();
 
 

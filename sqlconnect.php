@@ -1,4 +1,4 @@
-<?php
+<?php // This will connect to the SQL server
 
 DEFINE ('DB_USER', $_SESSION["user"]);
 DEFINE ('DB_PASSWORD', $_SESSION["pass"]);

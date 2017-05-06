@@ -1,3 +1,5 @@
+<!-- This form page is used to create a user account.
+	 Uses accountcreation.php -->
 <form action="accountcreation.php" method="get">
 <table style="height: 295px;" border="1" width="450">
 <tbody>

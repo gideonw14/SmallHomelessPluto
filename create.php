@@ -51,7 +51,7 @@
                     } else {
                         echo '<option value="Asteroid">Asteroid</option>';
                     }
-		    if($_SESSION['type_select'] == "Meteor") {
+		    		if($_SESSION['type_select'] == "Meteor") {
                         echo '<option selected>Meteor</option>';
                     } else {
                         echo '<option value="Meteor">Meteor</option>';
@@ -64,7 +64,8 @@
 
 		<form action="inserttuple.php" method="get">
 		
-		<?php 
+		<?php // These values are common to all celestial bodies
+			  // therefore we do not check the selection
 		if ($_SESSION['type_select'] == "") {
 			echo '<p hidden>';
 		}
@@ -90,7 +91,7 @@
 
         ?>
 		
-	<?php
+	<?php // Data specific to planet gets shown if Planet is selected
          if($_SESSION['type_select'] != "Planet") echo '<p hidden>';
                 echo 
 				'<br />Dwarf Planet<br /><input type="radio" name="dwarf" value="1" checked="checked" /> Yes
@@ -114,7 +115,7 @@
                                 echo'</select>';
 			if($_SESSION['type_select'] != "Planet") echo '</p>';
         ?>
-	<?php
+	<?php // Collect Moon data
             if($_SESSION['type_select'] == "Moon") {
                 echo 'Orbit Distance (in km) <input class="form-control" type="number" name="orbit_dist" /><br />
 				
@@ -131,7 +132,7 @@
             }
         ?>
 	
-	<?php
+	<?php // Asteroid data
             if($_SESSION['type_select'] != "Asteroid") echo '<p hidden>';
                 echo 'Member of an Asteroid Belt <br /> <input type="radio" name="belt" value="1" checked="true" /> Yes<br />
 						<input type="radio" name="belt" value="0" /> No<br /><br />';
@@ -156,7 +157,7 @@
 			if($_SESSION['type_select'] != "Asteroid" && $_SESSION['type_select'] != "Meteor") echo '</p>';
         ?>
 		
-	<?php
+	<?php // Meteor data
             if($_SESSION['type_select'] != "Meteor") echo '<p hidden>'; 
                 echo 'In the atmosphere of';
 						$query = "SELECT PName FROM planet";
@@ -175,7 +176,7 @@
             if($_SESSION['type_select'] != "Meteor") echo '</p>'; 
         ?>	
 		
-		<?php 
+		<?php // Submit button
 		if ($_SESSION['type_select'] != "") {
 			echo '<br /><input class="btn btn-default" type="submit" name="insertdatuple" value="Insert">';
 		}

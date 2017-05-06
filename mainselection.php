@@ -1,4 +1,4 @@
-<?php
+<?php // Selection variables for the main page veiwing area.
 session_start();
 
 

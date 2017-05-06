@@ -3,6 +3,8 @@
 	session_start();
 	require_once('sqlconnect.php');
 	
+	// This block here is collecting all of the user input from
+	// the form fields.
 	$type = $_SESSION['utype_select'];
 	$name = $_GET['more_select'];
 	$mass = $_GET['mass'];
@@ -22,6 +24,7 @@
 	$struck = $_GET['struck_surface'];
 	$mDate = $_GET['meteor_date'];
 	
+	// These are the attributes common to all entities
 	$query = 'UPDATE `celestial body` SET   ';
 	if ($gravity != "") $query .= '`Gravity` = "' . $gravity . '", ';
 	if ($mass != "") $query .= '`Mass` = "' . $mass . '", ';
@@ -31,6 +34,7 @@
 	$query .= 'WHERE `Name` = "' . $name . '"';
 	$response = @mysqli_query($dbc, $query);
 	
+	// Thes are the type specific attributes set here
 	if ($type == "Star") {
 		$query = 'UPDATE `star` SET ';
 		if ($surface_temp != "") $query .= '`Surface Temp` = "' . $surface_temp . '" ';

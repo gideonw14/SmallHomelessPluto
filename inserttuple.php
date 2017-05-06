@@ -2,6 +2,7 @@
 session_start();
 require_once('sqlconnect.php');
 
+// This block is getting all of the user input from form fields.
 $type = $_SESSION['type_select'];
 $name = $_GET['name'];
 $gravity = $_GET['gravity'];
@@ -10,6 +11,8 @@ $diameter = $_GET['diameter'];
 $dateDiscovered = $_GET['dateDiscovered'];
 $bad = "0";
 
+// We will get different data based on what 
+// entity we are creating.
 if ($type == "Star") {
 	$starTemp = $_GET['star_temp'];
 	
@@ -62,12 +65,13 @@ if ($type == "Meteor") {
 	}
 }
 
+// Error message if "not null" values are empty
 if ($type == "" || $name == "" || $mass == "" || $diameter == "" || $dateDiscovered == "" || $bad == "1") {
 	echo '<font size="+2" color="red">Required field not filled in.<br />
 			Please be sure to fill in all fields before pressing insert.</font>
 			<br /><br />
 			<a href="create.php">Return</a>';
-} else {
+} else { // Writing the queries to insert
 	$table = strtolower($type);
 	$query = 'INSERT INTO `celestial body` VALUES("' . $name . '", "' . $gravity . '", "' . $mass . '", "' . $diameter . '", "' . $dateDiscovered . '")';
 	$response = @mysqli_query($dbc, $query);

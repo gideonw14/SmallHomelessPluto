@@ -5,9 +5,9 @@ DEFINE ('DB_PASSWORD', "");
 DEFINE ('DB_HOST', 'localhost');
 DEFINE ('DB_NAME', 'solarsystem');
 
-$cUser = $_GET['cusername'];
+//Collecting data from form fields
+$cUser = $_GET['cusername']; 
 $cPass = $_GET['cpassword'];
-
 
 $connect = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
 OR die('Could not create account for unknown reason.  redirecting you...') . mysqli_connect_error()

@@ -2,6 +2,7 @@
 session_start();
 require_once('sqlconnect.php');
 
+// Getting user input
 $type = $_SESSION['dtype_select'];
 $name = $_GET['deletion_select'];
 
@@ -12,6 +13,7 @@ if ($name == "") {
 
 $type = strtolower($type);
 
+// Deleting from database based on user input
 if ($type == 'star') {
 	$query = 'DELETE FROM `star` WHERE `SName` = "' . $name . '"';
 } else if ($type == 'planet') {

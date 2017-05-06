@@ -22,8 +22,10 @@
 	<script type="text/javascript" src="./js/main.js"></script>
 </head>
 <body>
+	<!-- This page is used to update a tuple in the database -->
 	<a href="MainPage.php" class="btn btn-primary">Back</a>
 	<div class="container">
+		<!-- This form will select what type of entity to update -->
 		<div class="row">
 			Select what you would like to update:
 			<form action="updateselection.php" method="get">
@@ -71,7 +73,7 @@
 				
 				Which would you like to update?
 				<select name="more_select" class="form-control">
-				
+				<!-- Populate selections based on what entity is selected -->
 				<?php
 				if ($_SESSION['utype_select'] == 'Star') {
 					$query = "SELECT SName FROM star";
@@ -140,6 +142,7 @@
 				echo '</select>';
 				?>
 				
+				<!-- These attributes are common to all entities -->
 				<label for="mass">Mass (in 10^24 kg)</label>
 				<input type="number" name="mass" step="any" class="form-control">
 				<label for="gravity">Gravity (in m/s^2)</label>
@@ -150,7 +153,8 @@
 				<input type="date" name="date_discovered" class="form-control">
 				
 				
-				<?php
+				<?php // These are the type specific attributes that are only
+					  // shown if their respective type is selected
 					if($_SESSION['utype_select'] != "Star") echo '<p hidden>';
 						echo '<label for="surface_temp">Surface Temp (in K)</label>';
 						echo '<input type="number" name="surface_temp" class="form-control">';

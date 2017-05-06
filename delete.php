@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <?php
-	session_start();
-	require_once('sqlconnect.php');
+	session_start(); // Collects session variables
+	require_once('sqlconnect.php'); // Database connection
 ?>
 <head>
 	<title>Small Homeless Pluto</title>
@@ -24,6 +24,8 @@
 <body>
 	<a href="MainPage.php" class="btn btn-primary">Back</a>
 	<div>
+		<!-- This form is used to allow the user to
+		 	 delete an entity from the database -->
 		<form action="deleteselection.php" method="get">
 		Select what you would like to delete:
 		<select name="dtype_select" class="form-control">
@@ -70,7 +72,8 @@
 			echo '<select name="deletion_select" class="form-control">';
 		}  
 		?>
-		
+		<!-- After user selects what type of entity to delete,
+		 	 they are given options based on what is in the DB. -->
 		<?php
 		if ($_SESSION['dtype_select'] == 'Star') {
 			$query = "SELECT SName FROM star";

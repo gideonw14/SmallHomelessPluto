@@ -1,3 +1,5 @@
+<!-- This page is the first page that is displayed. The form
+ 	 allows a user to login if they have an account created. -->
 <form action="verify.php" method="get">
 <table style="height: 295px;" border="1" width="450">
 <tbody>

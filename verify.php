@@ -25,6 +25,8 @@ if ($response) { //if query was succesful
 	$_SESSION["accesslevel"] = $AL['accesslevel'];
 }
 
+// Setting all the session variables to be empty so that no
+// selections are preloaded.
 $_SESSION["star_select"] = "";
 $_SESSION["planet_select"] = "";
 $_SESSION["moon_select"] = "";
