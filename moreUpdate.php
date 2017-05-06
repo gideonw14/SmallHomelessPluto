@@ -1,4 +1,7 @@
 <?php
 session_start();
-require_once('sqlconnect.php');
+
+$_SESSION['moretype_select'] = $_GET['moretype_select'];
+
+header("refresh:0;update.php");
 ?>

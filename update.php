@@ -63,7 +63,7 @@
 				</select>
 				<input type="submit" value="Submit">
 			</form>
-		</div>
+		</div>	
 
 		<div class="row">
 			<form class="form-group" onsubmit="return false;">
