@@ -33,9 +33,13 @@
 	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 	    <div class="navbar-nav">
 	      <a class="nav-item nav-link" href="logout.php">Logout</a>
-	      <a class="nav-item nav-link" href="create.php">Create</a>
-	      <a class="nav-item nav-link" href="update.php">Update</a>
-	      <a class="nav-item nav-link" href="delete.php">Delete</a>
+		  <?php
+		  if ($_SESSION['accesslevel'] == "Admin") {
+			  echo '<a class="nav-item nav-link" href="create.php">Create</a>
+			  <a class="nav-item nav-link" href="update.php">Update</a>
+			  <a class="nav-item nav-link" href="delete.php">Delete</a>';
+		  }
+		  ?>
 	    </div>
 	  </div>
 	</nav>
