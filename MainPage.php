@@ -99,7 +99,7 @@
 					$response = @mysqli_query($dbc, $query);
 					if ($response) {
 						while($row = mysqli_fetch_array($response))
-							echo '<br /><b>Average Surface Temperature: </b>' . $row['Surface Temp'] .  '<b> degrees (C)</b>';
+							echo '<br /><b>Average Surface Temperature: </b>' . $row['Surface Temp'] .  '<b> &degC</b>';
 					}
 				}
 				
