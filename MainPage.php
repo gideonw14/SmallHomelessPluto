@@ -22,9 +22,12 @@
 </head>
 <body>
 	<?php 
-		session_start();
-		require_once('sqlconnect.php');
+		session_start(); // Stores our Session variables
+		
+		// Connection to the SQL server
+		require_once('sqlconnect.php'); 
 	?>
+	<!-- Menu Bar at the top -->
 	<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
 	  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -44,16 +47,18 @@
 	  </div>
 	</nav>
 
+	<!-- Main wrapper -->
 	<div class="container">
 		<div class="row">
 			<h3>
-			<?php
+			<?php // Displays user name and access level at top of screen
 				echo "You are logged in as " . $_SESSION['user'] . "
 					 and you have " . $_SESSION['accesslevel'] . " level access. ";
 			?>
 			</h3>
 		</div>
 		<div class="row">
+			<!-- Form to select a star -->
 			<div class="col">
 			<form id="selection_form" action="mainselection.php" method="get">
 				Select a star
@@ -69,14 +74,11 @@
 								echo '<option value="' . $row['SName'] . '">' . $row['SName'] . '</option>';
 							}
 						}
-						
-						
 					?>
-					
 					</select>
 			</div>
+			<!-- View star data -->
 			<div class="col">
-			
 			<?php
 				if ($_SESSION['star_select'] == "") {
 					echo 'Select a star to see information about that star.';
@@ -102,12 +104,11 @@
 							echo '<br /><b>Average Surface Temperature: </b>' . $row['Surface Temp'] .  '<b> degrees (C)</b>';
 					}
 				}
-				
 			?>
-			
 			</div>
 		</div>
 		<div class="row">
+			<!-- Select a planet - Requires star to be selected -->
 			<div class="col">
 					<?php if ($_SESSION['star_select'] == "") echo '<p hidden>'; ?>
 					<?php 
@@ -124,12 +125,12 @@
 									echo '<option value="' . $row['PName'] . '">' . $row['PName'] . '</option>';
 								}
 							}
-							//echo '<input type="submit" class="btn btn-success" value="Select Planet">';
 						}
 						echo '</select>';
 					?>
 					<?php if ($_SESSION['star_select'] == "") echo '</p>'; ?>
 			</div> 
+			<!-- View Planet Data -->
 			<div class="col">
 				<?php if ($_SESSION['star_select'] == "") echo '<p hidden>'; ?>
 				
@@ -176,6 +177,7 @@
 			</div>
 		</div>
 		<div class="row">
+			<!-- Select a Moon - Requires planet to be selected -->
 			<div class="col">
 					<?php if ($_SESSION['planet_select'] == "") echo '<p hidden>'; ?>
 					Select a Moon
@@ -192,13 +194,12 @@
 									echo '<option value="' . $row['MName'] . '">' . $row['MName'] . '</option>';
 								}
 							}
-							//echo '<input type="submit" class="btn btn-success" value="Select Moon">';
 						}
 						echo '</select>';
 					?>
-					
 					<?php if ($_SESSION['planet_select'] == "") echo '</p>'; ?>
 			</div>
+			<!-- View moon data -->
 			<div class="col">
 			<?php if ($_SESSION['planet_select'] == "") echo '<p hidden>'; ?>
 			
@@ -231,13 +232,12 @@
 							}
 						}
 					}
-					
 				?>
-			
 			<?php if ($_SESSION['planet_select'] == "") echo '</p>'; ?>
 			</div>
 		</div>
 		<div class="row">
+			<!-- Select an asteroid - requires star to be selected -->
 			<div class="col">
 					<?php if ($_SESSION['star_select'] == "") echo '<p hidden>'; ?>
 					Select an Asteroid
@@ -255,12 +255,12 @@
 									echo '<option value="' . $row['AName'] . '">' . $row['AName'] . '</option>';
 								}
 							}
-							//echo '<input type="submit" class="btn btn-success" value="Select Asteroid">';
 						}
 						echo '</select>';
 					?>
 					<?php if ($_SESSION['star_select'] == "") echo '</p>'; ?>
 			</div>
+			<!-- View asteroid data -->
 			<div class="col">
 			<?php if ($_SESSION['star_select'] == "") echo '<p hidden>'; ?>
 			
@@ -297,13 +297,12 @@
 							}
 						}
 					}
-					
 				?>
-			
 			<?php if ($_SESSION['star_select'] == "") echo '</p>'; ?>
 			</div>
 		</div>
 		<div class="row">
+			<!-- Select a meteor - planet must be selected first -->
 			<div class="col">
 					<?php if ($_SESSION['planet_select'] == "") echo '<p hidden>';?>
 					Select a Meteor
@@ -321,8 +320,6 @@
 									echo '<option value="' . $row['MeteorName'] . '">' . $row['MeteorName'] . '</option>';
 								}
 							}
-							
-							//echo '<input type="submit" class="btn btn-success" value="Select Meteor">';
 						}
 						echo '</select>';
 					?>
@@ -331,6 +328,7 @@
 				<input type="submit" class="btn btn-warning" value="Select">
 				</form>
 			</div>
+			<!-- See meteor data -->
 			<div class="col">
 			<?php if ($_SESSION['planet_select'] == "") echo '<p hidden>';?>
 			
@@ -351,8 +349,6 @@
 							}
 							echo '</table>';
 						}
-						
-
 						$query = "SELECT * FROM `asteroid` WHERE `AName` = '" . $_SESSION['meteor_select'] . "'";
 						$response = @mysqli_query($dbc, $query);
 						if ($response) {
@@ -367,8 +363,6 @@
 								'<br /><b>Asteroid Number: </b>' . $row['Asteroid Number'];
 							}
 						}
-						
-						
 						$query = "SELECT * FROM `meteor` WHERE `MeteorName` = '" . $_SESSION['meteor_select'] . "'";
 						$response = @mysqli_query($dbc, $query);
 						if ($response) {
@@ -384,9 +378,7 @@
 							}
 						}
 					}
-					
 				?>
-			
 			<?php if ($_SESSION['planet_select'] == "") echo '</p>';?></div>
 		</div>
 	</div>
