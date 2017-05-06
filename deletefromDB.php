@@ -13,7 +13,7 @@ if ($name == "") {
 $type = strtolower($type);
 
 if ($type == 'star') {
-	$query = 'DELETE FROM `' . $type . '` WHERE `SName` = "' . $name . '"';
+	$query = 'DELETE FROM `star` WHERE `SName` = "' . $name . '"';
 } else if ($type == 'planet') {
 	$query = 'DELETE FROM `' . $type . '` WHERE `PName` = "' . $name . '"';
 } else if ($type == 'moon') {
