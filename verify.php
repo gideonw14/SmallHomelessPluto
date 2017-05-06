@@ -32,6 +32,7 @@ $_SESSION["asteroid_select"] = "";
 $_SESSION["meteor_select"] = "";
 
 $_SESSION["type_select"] = "";
+$_SESSION["utype_select"] = "";
 
 $_SESSION["dtype_select"] = "";
 $_SESSION["dstar_select"] = "";

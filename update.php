@@ -25,7 +25,7 @@
 	<a href="MainPage.php" class="btn btn-primary">Back</a>
 	<div class="container">
 		<div class="row">
-			Select what you would like to create:
+			Select what you would like to update:
 			<form action="updateselection.php" method="get">
 				<select name="utype_select" class="form-control">
 				<option value=""></option>
@@ -66,21 +66,11 @@
 		</div>	
 
 		<div class="row">
-			<form class="form-group" onsubmit="return false;">
-				<label for="name">Name</label>
-				<input type="text" name="name" class="form-control">
-				<label for="mass">Mass</label>
-				<input type="number" name="mass" step="any" class="form-control">
-				<label for="diameter">Diameter</label>
-				<input type="number" name="diameter" class="form-control">
-				<label for="date_discovered">Date Discovered</label>
-				<input type="date" name="date_discovered" class="form-control">
-				<?php
-					if ($_SESSION['utype_select'] != '') {
-					echo 'Which would you like to update?';
-					echo '<select name="more_select" class="form-control">';
-				}  
-				?>
+			<form class="form-group" action="updateDB.php" method="get">
+				<?php if ($_SESSION['utype_select'] == "") echo '<p hidden>'; ?>
+				
+				Which would you like to update?
+				<select name="more_select" class="form-control">
 				
 				<?php
 				if ($_SESSION['utype_select'] == 'Star') {
@@ -147,42 +137,70 @@
 						}
 					}
 				}
-					if($_SESSION['utype_select'] == "Star"){
-						echo '<label for="surface_temp">Surface Temp.</label>';
+				echo '</select>';
+				?>
+				
+				<label for="mass">Mass (in 10^24 kg)</label>
+				<input type="number" name="mass" step="any" class="form-control">
+				<label for="gravity">Gravity (in m/s^2)</label>
+				<input type="number" name="gravity" step="any" class="form-control">
+				<label for="diameter">Diameter (in km)</label>
+				<input type="number" name="diameter" class="form-control">
+				<label for="date_discovered">Date Discovered</label>
+				<input type="date" name="date_discovered" class="form-control">
+				
+				
+				<?php
+					if($_SESSION['utype_select'] != "Star") echo '<p hidden>';
+						echo '<label for="surface_temp">Surface Temp (in K)</label>';
 						echo '<input type="number" name="surface_temp" class="form-control">';
-					}
-					if($_SESSION['utype_select'] == "Planet"){
-						echo '<input type="radio" name="dwarf" value="true" class="form-control"> Dwarf Planet<br>';
-						echo '<input type="radio" name="dwarf" value="false" class="form-control"> Not Dwarf Planet<br>';
-						echo '<label for="distance">Orbit Distance</label>';
+					if($_SESSION['utype_select'] != "Star") echo '</p>';
+					
+					if($_SESSION['utype_select'] != "Planet") echo '<p hidden>';
+						 echo 
+						'<br />Dwarf Planet:<br /><input type="radio" name="dwarf" value="1"  checked="true"/> Yes
+									<br /><input type="radio" name="dwarf" value="0" /> No<br /><br />';
+						echo '<label for="distance">Orbit Distance (in km)</label>';
 						echo '<input type="number" name="distance" class="form-control">';
-						echo '<label for="year">Year Length</label>';
+						echo '<label for="year">Year Length (in Earth Days)</label>';
 						echo '<input type="number" name="year" class="form-control">';
-						echo '<label for="population">Population</label>';
+						echo '<label for="population">Population (in Millions of Inhabitants)</label>';
 						echo '<input type="number" name="population" class="form-control">';
-						echo '<label for="avg_surf_temp">Average Surface Temperature</label>';
+						echo '<label for="avg_surf_temp">Average Surface Temperature (in K)</label>';
 						echo '<input type="number" name="avg_surf_temp" class="form-control">';
-					}
-					if($_SESSION['utype_select'] == "Moon"){
-						echo '<label for="moon_distance">Moon Orbit Distance</label>';
+					if($_SESSION['utype_select'] != "Planet") echo '</p>';
+					
+					if($_SESSION['utype_select'] != "Moon") echo '<p hidden>';
+						echo '<label for="moon_distance">Moon Orbit Distance (in 10^24 km)</label>';
 						echo '<input type="number" name="moon_distance" class="form-control">';
-						echo '<label for="moon_orbit_time">Orbit Time</label>';
+						echo '<label for="moon_orbit_time">Orbit Time (in Earth Days)</label>';
 						echo '<input type="number" name="moon_orbit_time" class="form-control">';
-					}
-					if($_SESSION['utype_select'] == "Asteroid"){
-						echo '<input type="radio" name="asteroid_belt" value="true" class="form-control">Member of Asteroid Belt<br>';
-						echo '<input type="radio" name="asteroid_belt" value="false" class="form-control">NOT Member of Asteroid Belt<br>';
+					if($_SESSION['utype_select'] != "Moon") echo '</p>';
+					
+					if($_SESSION['utype_select'] != "Asteroid") echo '<p hidden>';
+						echo '<br />Is it a member of the asteroid belt?<br />';
+						echo '<input type="radio" name="asteroid_belt" value="1" checked="true"> Yes<br>';
+						echo '<input type="radio" name="asteroid_belt" value="0"> No<br><br>';
 						echo '<label for="asteroid_num">Asteroid Number</label>';
 						echo '<input type="number" name="asteroid_num" class="form-control">';
-					}
-					if($_SESSION['utype_select'] == "Meteor"){
-						echo '<input type="radio" name="struck_surface" value="true" class="form-control">Struck Surface<br>';
-						echo '<input type="radio" name="struck_surface" value="false" class="form-control">DID NOT Strike Surface<br>';
+					if($_SESSION['utype_select'] != "Asteroid") echo '</p>';
+					
+					if($_SESSION['utype_select'] != "Meteor") echo '<p hidden>';
+						echo '<br />Struck Surface: <br />';
+						echo '<input type="radio" name="struck_surface" value="1" checked="true"> Yes<br>';
+						echo '<input type="radio" name="struck_surface" value="0"> No<br><br />';
+                        echo '<label for="asteroid_num">Asteroid Number</label>';
+                        echo '<input type="number" name="asteroid_num" class="form-control">';
 						echo '<label for="meteor_date">Date Became Meteor</label>';
 						echo '<input type="date" name="meteor_date" class="form-control">';
-					}
+					if($_SESSION['utype_select'] != "Meteor") echo '</p>';
+
+                    echo '<br />';
+					
+					if ($_SESSION['utype_select'] =="") echo '<p hidden>';
+					echo '<input type="submit" class="btn btn-default" value="Update">';
+					if ($_SESSION['utype_select'] =="") echo '</p>';
 				?>
-				<input type="submit" class="btn btn-default" value="Update">
 			</form>
 		</div>
 	</div>

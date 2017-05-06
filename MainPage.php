@@ -33,9 +33,13 @@
 	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 	    <div class="navbar-nav">
 	      <a class="nav-item nav-link" href="logout.php">Logout</a>
-	      <a class="nav-item nav-link" href="create.php">Create</a>
-	      <a class="nav-item nav-link" href="update.php">Update</a>
-	      <a class="nav-item nav-link" href="delete.php">Delete</a>
+		  <?php
+		  if ($_SESSION['accesslevel'] == "Admin") {
+			  echo '<a class="nav-item nav-link" href="create.php">Create</a>
+			  <a class="nav-item nav-link" href="update.php">Update</a>
+			  <a class="nav-item nav-link" href="delete.php">Delete</a>';
+		  }
+		  ?>
 	    </div>
 	  </div>
 	</nav>
@@ -83,9 +87,9 @@
 					if ($response) {
 						while($row = mysqli_fetch_array($response)) {
 							echo '<b>Star Name: </b>' . $row['Name'] .
-							'<br /><b>Gravity: </b>' . $row['Gravity'] .
-							'<br /><b>Mass: </b>' . $row['Mass'] .
-							'<br /><b>Diameter: </b>' . $row['Diameter'] .
+							'<br /><b>Gravity: </b>' . $row['Gravity'] . '<b> m/s^2</b>' .
+                            '<br /><b>Mass: </b>' . $row['Mass'] . '<b> * 10^24 kg</b>' .
+							'<br /><b>Diameter: </b>' . $row['Diameter'] . '<b> km</b>' .
 							'<br /><b>Date Discovered: </b>' . $row['Date Discovered'];
 						}
 						echo '</table>';
@@ -95,7 +99,7 @@
 					$response = @mysqli_query($dbc, $query);
 					if ($response) {
 						while($row = mysqli_fetch_array($response))
-							echo '<br /><b>Average Surface Temperature: </b>' . $row['Surface Temp'];
+							echo '<br /><b>Average Surface Temperature: </b>' . $row['Surface Temp'] .  '<b> degrees (C)</b>';
 					}
 				}
 				
@@ -139,9 +143,9 @@
 						if ($response) {
 							while($row = mysqli_fetch_array($response)) {
 								echo '<b>Planet Name: </b>' . $row['Name'] .
-								'<br /><b>Gravity: </b>' . $row['Gravity'] .
-								'<br /><b>Mass: </b>' . $row['Mass'] .
-								'<br /><b>Diameter: </b>' . $row['Diameter'] .
+								'<br /><b>Gravity: </b>' . $row['Gravity'] . '<b> m/s^2</b>' .
+								'<br /><b>Mass: </b>' . $row['Mass'] . '<b> * 10^24 kg</b>' .
+								'<br /><b>Diameter: </b>' . $row['Diameter'] . '<b> km</b>' .
 								'<br /><b>Date Discovered: </b>' . $row['Date Discovered'];
 							}
 							echo '</table>';
@@ -159,10 +163,9 @@
 								
 								echo
 								'<br /><b>Planet Number: </b>' . $row['Planet Number'] .
-								'<br /><b>Population: </b>' . $row['Population'] .
-								'<br /><b>Orbit Distance: </b>' . $row['Orbit Distance'] .
-								'<br /><b>Year Length: </b>' . $row['Year Length'] .
-								'<br /><b>Average Surface Temperature: </b>' . $row['Average Surface Temp'];
+								'<br /><b>Population: </b>' . $row['Population'] . '<b> (in Millions of Inhabitants)</b>' .
+								'<br /><b>Orbit Distance: </b>' . $row['Orbit Distance'] . '<b> * 10^6 km</b>' .
+								'<br /><b>Year Length: </b>' . $row['Year Length'] . '<b> Earth Days</b>';
 							}
 						}
 					}
@@ -209,9 +212,9 @@
 						if ($response) {
 							while($row = mysqli_fetch_array($response)) {
 								echo '<b>Moon Name: </b>' . $row['Name'] .
-								'<br /><b>Gravity: </b>' . $row['Gravity'] .
-								'<br /><b>Mass: </b>' . $row['Mass'] .
-								'<br /><b>Diameter: </b>' . $row['Diameter'] .
+								'<br /><b>Gravity: </b>' . $row['Gravity'] . '<b> m/s^2</b>' .
+								'<br /><b>Mass: </b>' . $row['Mass'] . '<b> * 10^24 kg</b>' .
+								'<br /><b>Diameter: </b>' . $row['Diameter'] . '<b> km</b>' .
 								'<br /><b>Date Discovered: </b>' . $row['Date Discovered'];
 							}
 							echo '</table>';
@@ -223,8 +226,8 @@
 							while($row = mysqli_fetch_array($response)) {					
 								echo
 								'<br /><b>Moon Number: </b>' . $row['Moon Number'] .
-								'<br /><b>Orbit Distance: </b>' . $row['Orbit Distance'] .
-								'<br /><b>Orbit Time: </b>' . $row['Orbit Time'];
+								'<br /><b>Orbit Distance: </b>' . $row['Orbit Distance'] . '<b> km</b>' .
+								'<br /><b>Orbit Time: </b>' . $row['Orbit Time'] . '<b> Earth Days</b>';
 							}
 						}
 					}
@@ -271,26 +274,26 @@
 						if ($response) {
 							while($row = mysqli_fetch_array($response)) {
 								echo '<b>Asteroid Name: </b>' . $row['Name'] .
-								'<br /><b>Gravity: </b>' . $row['Gravity'] .
-								'<br /><b>Mass: </b>' . $row['Mass'] .
-								'<br /><b>Diameter: </b>' . $row['Diameter'] .
+								'<br /><b>Gravity: </b>' . $row['Gravity'] . '<b> m/s^2</b>' .
+								'<br /><b>Mass: </b>' . $row['Mass'] . '<b> * 10^24 kg</b>' .
+								'<br /><b>Diameter: </b>' . $row['Diameter'] . '<b> km</b>' .
 								'<br /><b>Date Discovered: </b>' . $row['Date Discovered'];
 							}
 							echo '</table>';
 						}
 						
-						$query = "SELECT * FROM `asteroid` WHERE `PName` = '" . $_SESSION['asteroid_select'] . "'";
+						$query = "SELECT * FROM `asteroid` WHERE `AName` = '" . $_SESSION['asteroid_select'] . "'";
 						$response = @mysqli_query($dbc, $query);
 						if ($response) {
 							while($row = mysqli_fetch_array($response)) {
 								if ($row['Member of AB'] == 0) {
-									echo '<br /><b>Member of Asteroid Belt: No';
+									echo '<br /><b>Member of Asteroid Belt:</b> No';
 								} else {
-									echo '<br /><b>Member of Asteroid Belt: Yes';
+									echo '<br /><b>Member of Asteroid Belt:</b> Yes';
 								}
 								
 								echo
-								'<br /><b>Asteroid Number: </b>' . $row['Planet Number'];
+								'<br /><b>Asteroid Number: </b>' . $row['Asteroid Number'];
 							}
 						}
 					}
@@ -324,6 +327,7 @@
 						echo '</select>';
 					?>
 					<?php if ($_SESSION['planet_select'] == "") echo '</p>'; ?>
+					<br />
 				<input type="submit" class="btn btn-warning" value="Select">
 				</form>
 			</div>
@@ -340,13 +344,30 @@
 						if ($response) {
 							while($row = mysqli_fetch_array($response)) {
 								echo '<b>Meteor Name: </b>' . $row['Name'] .
-								'<br /><b>Gravity: </b>' . $row['Gravity'] .
-								'<br /><b>Mass: </b>' . $row['Mass'] .
-								'<br /><b>Diameter: </b>' . $row['Diameter'] .
+								'<br /><b>Gravity: </b>' . $row['Gravity'] . '<b> m/s^2</b>' .
+								'<br /><b>Mass: </b>' . $row['Mass'] . '<b> * 10^24 kg</b>' .
+								'<br /><b>Diameter: </b>' . $row['Diameter'] . '<b> km</b>' .
 								'<br /><b>Date Discovered: </b>' . $row['Date Discovered'];
 							}
 							echo '</table>';
 						}
+						
+
+						$query = "SELECT * FROM `asteroid` WHERE `AName` = '" . $_SESSION['meteor_select'] . "'";
+						$response = @mysqli_query($dbc, $query);
+						if ($response) {
+							while($row = mysqli_fetch_array($response)) {
+								if ($row['Member of AB'] == 0) {
+									echo '<br /><b>Member of Asteroid Belt:</b> No';
+								} else {
+									echo '<br /><b>Member of Asteroid Belt:</b> Yes';
+								}
+								
+								echo
+								'<br /><b>Asteroid Number: </b>' . $row['Asteroid Number'];
+							}
+						}
+						
 						
 						$query = "SELECT * FROM `meteor` WHERE `MeteorName` = '" . $_SESSION['meteor_select'] . "'";
 						$response = @mysqli_query($dbc, $query);
@@ -356,9 +377,9 @@
 								'<br /><b>Date Became Meteor:</b>' . $row['Date'];
 								
 								if ($row['Struck Surface'] == 0) {
-									echo '<br /><b>Struck Surface: No';
+									echo '<br /><b>Struck Surface:</b> No';
 								} else {
-									echo '<br /><b>Struck Surface: Yes';
+									echo '<br /><b>Struck Surface:</b> Yes';
 								}
 							}
 						}

@@ -23,11 +23,10 @@
 </head>
 <body>
 	<a href="MainPage.php" class="btn btn-primary">Back</a>
+	
 	<div>
-		Select what you would like to create:
+		<br />Select what you would like to create:
 		
-
-
 		<form id="selection_form" action="createselection.php" method="get">
 			<select name="type_select" class="form-control">
                 <option value=""></option>
@@ -60,60 +59,71 @@
                 ?>
 
 			</select>
-            <input type="submit" class="btn btn-default" value="Choose">
+            <input type="submit" class="btn btn-default" value="Choose"><br /><br />
 		</form>
 
 		<form action="inserttuple.php" method="get">
 		
-		
-		<label for="name">Name</label>
-		<input type="text" name="name" class="form-control">
-		<label for="mass">Mass</label>
-		<input type="number" name="mass" step="any" class="form-control">
-		<label for="diameter">Diameter</label>
-		<input type="number" name="diameter" class="form-control">
-		<label for="date_discovered">Date Discovered</label>
-		<input type="date" name="date_discovered" class="form-control">
+		<?php 
+		if ($_SESSION['type_select'] == "") {
+			echo '<p hidden>';
+		}
+			echo '
+			<label for="name">Name</label>
+			<input type="text" name="name" class="form-control"><br />
+			<label for="mass">Mass (in 10^24 kg)</label>
+			<input type="number" name="mass" step="any" class="form-control"><br />
+			<label for="gravity">Gravity (in m/s^2)</label>
+			<input type="number" name="gravity" class="form-control"><br />
+			<label for="diameter">Diameter (in km)</label>
+			<input type="number" name="diameter" class="form-control"><br />
+			<label for="date_discovered">Date Discovered</label>
+			<input type="date" name="dateDiscovered" class="form-control"><br />';
+			
+		if ($_SESSION['type_select'] == "") echo '</p>';
+		?>
 		
         <?php
-            if($_SESSION['type_select'] == "Star") {
-                echo '<p>Star Surface Temperature: <input id="star_temp" name="star_temp" type="number" /></p>';
-           }
+			if($_SESSION['type_select'] != "Star") echo '<p hidden>';
+			echo 'Star Surface Temperature (in K) <input class="form-control" id="star_temp" name="star_temp" type="number" />';
+            if($_SESSION['type_select'] != "Star") echo '</p>';
+
         ?>
 		
 	<?php
-            if($_SESSION['type_select'] == "Planet") {
-                echo 'Dwarf Planet: <form><input type="radio" name="dwarf" value="Yes" /> Yes<br />
-						<input type="radio" name="dwarf" value="No" /> No</form>
+         if($_SESSION['type_select'] != "Planet") echo '<p hidden>';
+                echo 
+				'<br />Dwarf Planet<br /><input type="radio" name="dwarf" value="1" checked="checked" /> Yes
+									<br /><input type="radio" name="dwarf" value="0" /> No<br /><br />
 				
-				Population: <input type="number" name="population" /><br /><br />
+				Population (in Millions of Inhabitants) <input class="form-control" type="number" name="population" /><br />
 				
-				Orbit Distance: <input type="number" name="orbit_dist" /><br /><br />
+				Orbit Distance (in km) <input class="form-control" type="number" name="orbit_dist" /><br />
 				
-				Year Length: <input type="number" name="year_length" /><br /><br />
+				Year Length (in Earth Days) <input class="form-control" type="number" name="year_length" /><br />
 				
-				Average Surface Temperature: <input type="number" name="surf_temp" /><br /><br />
+				Average Surface Temperature (in K) <input class="form-control" type="number" name="surf_temp" /><br />
 				
-				In orbit around:';
+				In orbit around';
 						$query = "SELECT SName FROM star";
 						$response = @mysqli_query($dbc, $query);
-						echo "<select name=\"star_select\" class=\"form-control\">";
+						echo '<select name="orbits" class="form-control">';
 						while ($row = mysqli_fetch_array($response)) {
 							echo '<option value="' . $row['SName'] . '">' . $row['SName'] . '</option>';
 						}
                                 echo'</select>';
-            }
+			if($_SESSION['type_select'] != "Planet") echo '</p>';
         ?>
 	<?php
             if($_SESSION['type_select'] == "Moon") {
-                echo 'Orbit Distance: <input type="number" name="orbit_dist" /><br /><br />
+                echo 'Orbit Distance (in km) <input class="form-control" type="number" name="orbit_dist" /><br />
 				
-			Orbit Time: <input type="number" name="year_length" /><br /><br />
+			Orbit Time (in Earth Days) <input type="number" name="year_length" class="form-control" /><br />
 				
-			In orbit around:';
+			In orbit around';
 						$query = "SELECT PName FROM planet";
 						$response = @mysqli_query($dbc, $query);
-						echo "<select name=\"star_select\" class=\"form-control\">";
+						echo "<select name=\"morbits\" class=\"form-control\">";
 						while ($row = mysqli_fetch_array($response)) {
 							echo '<option value="' . $row['PName'] . '">' . $row['PName'] . '</option>';
 						}
@@ -122,34 +132,55 @@
         ?>
 	
 	<?php
-            if($_SESSION['type_select'] == "Asteroid") {
-                echo 'Member of an Asteroid Belt: <form><input type="radio" name="belt" value="Yes" /> Yes<br />
-						<input type="radio" name="belt" value="No" /> No</form>
-				
-			Asteroid Number: <input type="number" name="asteroid_number" /><br /><br />';
-            }
+            if($_SESSION['type_select'] != "Asteroid") echo '<p hidden>';
+                echo 'Member of an Asteroid Belt <br /> <input type="radio" name="belt" value="1" checked="true" /> Yes<br />
+						<input type="radio" name="belt" value="0" /> No<br /><br />';
+						
+			if($_SESSION['type_select'] != "Asteroid") echo '</p>';
+			
+			if($_SESSION['type_select'] != "Asteroid" && $_SESSION['type_select'] != "Meteor") echo '<p hidden>';
+			echo 'Asteroid Number <input type="number" name="asteroid_number" class="form-control" /><br />';
+			if($_SESSION['type_select'] != "Asteroid" && $_SESSION['type_select'] != "Meteor") echo '</p>';
+			
+
+			
+			if($_SESSION['type_select'] != "Asteroid" && $_SESSION['type_select'] != "Meteor") echo '<p hidden>';
+			echo 'Orbits around';
+			$query = "SELECT SName FROM star";
+			$response = @mysqli_query($dbc, $query);
+			echo "<select name=\"aorbits\" class=\"form-control\">";
+			while ($row = mysqli_fetch_array($response)) {
+				echo '<option value="' . $row['SName'] . '">' . $row['SName'] . '</option>';
+			}
+			echo'</select><br />';
+			if($_SESSION['type_select'] != "Asteroid" && $_SESSION['type_select'] != "Meteor") echo '</p>';
         ?>
 		
 	<?php
-            if($_SESSION['type_select'] == "Meteor") {
-                echo 'Asteroid Number: <input type="number" name="asteroid_number" /><br /><br />
-		    
-			In the atmosphere of:';
+            if($_SESSION['type_select'] != "Meteor") echo '<p hidden>'; 
+                echo 'In the atmosphere of';
 						$query = "SELECT PName FROM planet";
 						$response = @mysqli_query($dbc, $query);
-						echo "<select name=\"star_select\" class=\"form-control\">";
+						echo "<select name=\"planet\" class=\"form-control\">";
 						while ($row = mysqli_fetch_array($response)) {
 							echo '<option value="' . $row['PName'] . '">' . $row['PName'] . '</option>';
 						}
-                        echo'</select>
+                        echo'</select><br />
 			
-			Date (Became Meteor): <input type="date" name="meteor_date" /><br /><br ?>
+			Date (Became Meteor) <input class="form-control" type="date" name="meteor_date" /><br />
 			
-			Struck Surface: <form><input type="radio" name="struck" value="Yes" /> Yes<br />
-						<input type="radio" name="struck" value="No" /> No</form>';
-            }
+			Struck Surface <br /><input type="radio" name="struck" value="1" checked="true" /> Yes<br />
+								  <input type="radio" name="struck" value="0" /> No';
+     
+            if($_SESSION['type_select'] != "Meteor") echo '</p>'; 
         ?>	
 		
+		<?php 
+		if ($_SESSION['type_select'] != "") {
+			echo '<br /><input class="btn btn-default" type="submit" name="insertdatuple" value="Insert">';
+		}
+		?>
+		</form>
         <br />
 	</div>
 </body>
